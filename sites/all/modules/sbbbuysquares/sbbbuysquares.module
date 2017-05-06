@@ -1,0 +1,328 @@
+<?php
+module_load_include('inc.php', 'sbbbuysquares', 'classes/SquaresIPNErrorsDatabase');
+  module_load_include('inc', 'webform', 'includes/webform.submissions');
+
+/**
+ * Does the URL binding.
+ */
+function sbbbuysquares_menu() {
+  $items = array();
+
+  $items['squares/initiate-purchase'] = array(
+    'title' => 'T minus 10...',
+    'page callback' => 'sbbbuysquares_initiate',
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+  $items['squares/paypal-ipn'] = array(
+    'title' => 'The IPN back-end for PayPal purchases',
+    'page callback' => 'sbbbuysquares_paypal_ipn',
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+  $items['squares/paypal-success'] = array(
+    'title' => 'You rock',
+    'page callback' => 'sbbbuysquares_paypal_success',
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+  $items['squares/paypal-fail'] = array(
+    'title' => 'Mission abort',
+    'page callback' => 'sbbbuysquares_paypal_fail',
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+
+  return $items;
+}
+
+function sbbbuysquares_generateRandomId($length = 8) {
+  return substr(str_shuffle(MD5(microtime())), 0, $length);
+}
+
+function sbbbuysquares_create_new_purchase($id /* int */, $name, $email, $company, $message, $horizontal /* int */, $vertical /* int */, $preferredSquares, $agree /* boolean */) {
+  $webformNid = variable_get('sbbbuysquares_purchases_webform_id');
+  $node = node_load($webformNid);
+  global $user;
+  $data = array(
+    1 => array('value' => array($id)),
+    2 => array('value' => array($name)),
+    3 => array('value' => array($email)),
+    4 => array('value' => array($company)),
+    5 => array('value' => array($message)),
+    6 => array('value' => array($horizontal)),
+    7 => array('value' => array($vertical)),
+    8 => array('value' => array($preferredSquares)),
+    9 => array('value' => array($agree ? "yes" : "no")),
+    10 => array('value' => array("no")), // not completed yet
+  );
+  $submission = (object) array(
+    'nid' => $webformNid,
+    'uid' => $user->uid,
+    'submitted' => REQUEST_TIME,
+    'remote_addr' => ip_address(),
+    'is_draft' => FALSE,
+    'data' => $data,
+  );
+  webform_submission_insert($node, $submission);
+  webform_submission_send_mail($node, $submission);
+}
+
+function sbbbuysquares_get_purchase($id) {
+  $webformNid = variable_get('sbbbuysquares_purchases_webform_id');
+  $node = node_load($webformNid);
+  // MDC: I don't know how to use these filters, so just do it brute force
+  $submissions = webform_get_submissions($webformNid); 
+  $submission = NULL;
+  foreach($submissions as $s) {
+    if($s->data[1]['value'][0] == "$id") {
+      $submission = $s;
+      break;
+    }
+  }
+  if($submission == NULL) {
+    return NULL;
+  }
+  return array(
+    "id" => $submission->data[1]['value'][0],
+    "name" => $submission->data[2]['value'][0],
+    "email" => $submission->data[3]['value'][0],
+    "company" => $submission->data[4]['value'][0],
+    "message" => $submission->data[5]['value'][0],
+    "horizontal" => intval($submission->data[6]['value'][0]),
+    "vertical" => intval($submission->data[7]['value'][0]),
+    "preferredSquares" => $submission->data[8]['value'][0],
+    "agree" => $submission->data[9]['value'][0] == "yes",
+    "completed" => isset($submission->data[10]['value'][0]) ? $submission->data[10]['value'][0] == "yes" : "",
+    "double" => isset($submission->data[11]['value'][0]) ? $submission->data[11]['value'][0] == "yes" : "",
+    "correct" => isset($submission->data[12]['value'][0]) ? $submission->data[12]['value'][0] == "yes" : ""
+  );
+}
+
+function sbbbuysquares_set_purchase_paid($id /* int */, $double /* boolean */, $correct /* boolean */) {
+  $webformNid = variable_get('sbbbuysquares_purchases_webform_id');
+  $node = node_load($webformNid);
+  // MDC: I don't know how to use these filters, so just do it brute force
+  $submissions = webform_get_submissions($webformNid); 
+  $submission = NULL;
+  foreach($submissions as $s) {
+    if($s->data[1]['value'][0] == "$id") {
+      $submission = $s;
+      break;
+    }
+  }
+  if($submission == NULL) {
+    return "submission not found";
+  }
+  $submission->data[10]['value'][0] = "yes"; // completed
+  $submission->data[11]['value'][0] = $double ? "yes" : "no";
+  $submission->data[12]['value'][0] = $correct ? "yes" : "no";
+  webform_submission_update($node, $submission);  
+  webform_submission_send_mail($node, $submission);
+}
+
+
+function sbbbuysquares_initiate() {
+  $name = "";
+  $company = "";
+  $email = "";
+  $message = "";
+  $preferredSquares = "";
+  $horizontal = -1;
+  $vertical = -1;
+  $agreed = false;
+  // first check that all the necessary variables are given
+  if(isset($_POST['submitted']['name'])) {
+    $name = $_POST['submitted']['name']; 
+  } else {
+    return "error: name missing"; 
+  }
+  if(isset($_POST['submitted']['email'])) {
+    $email = $_POST['submitted']['email'];
+  } else {
+    return "error: email missing"; 
+  }
+  if(isset($_POST['submitted']['company'])) {
+    $company = $_POST['submitted']['company'];
+  }
+  if(isset($_POST['submitted']['message'])) {
+    $message = $_POST['submitted']['message'];
+  } else {
+    return "error: message missing"; 
+  }
+  if(isset($_POST['submitted']['horizontal'])) {
+    $horizontal = intval($_POST['submitted']['horizontal']);
+  } else {
+    return "error: horizontal nb squares missing"; 
+  }
+  if(isset($_POST['submitted']['vertical'])) {
+    $vertical = intval($_POST['submitted']['vertical']);
+  } else {
+    return "error: vertical nb squares missing"; 
+  }
+  if(isset($_POST['submitted']['preferred_squares'])) {
+    $preferredSquares = $_POST['submitted']['preferred_squares'];
+  }
+  if(isset($_POST['agree'])) {
+    $agree = true;
+  } else {
+    return "error: you should agree to the terms and conditions"; 
+  }
+  // then generate an id
+  $id = sbbbuysquares_generateRandomId(20);
+  // then store the new purchase
+  sbbbuysquares_create_new_purchase($id, $name, $email, $company, $message, $horizontal, $vertical, $preferredSquares, $agree);
+  // then redirect to paypal
+  return '
+<div class="row">
+    <div class="col-xs-12 text-center">Redirecting you to PayPal. Please wait.</div>
+</div>
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" id="paypalHiddenForm">
+  <input type="hidden" name="custom" value="' . $id . '">
+  <input type="hidden" id="quantity" name="quantity" value="' . ($horizontal * $vertical) . '">
+  <input type="hidden" name="cmd" value="_s-xclick">
+  <input type="hidden" name="hosted_button_id" value="JMFGSCNRBLCH4">
+</form>
+
+<script>
+document.getElementById("paypalHiddenForm").submit();
+</script>';
+}
+
+function sbbbuysquares_paypal_ipn() {
+  // from: https://developer.paypal.com/webapps/developer/docs/classic/ipn/ht_ipn/
+  // STEP 1: read POST data
+   
+  // Reading POSTed data directly from $_POST causes serialization issues with array data in the POST.
+  // Instead, read raw POST data from the input stream. 
+  $raw_post_data = file_get_contents('php://input');
+  $raw_post_array = explode('&', $raw_post_data);
+  $myPost = array();
+  foreach ($raw_post_array as $keyval) {
+    $keyval = explode ('=', $keyval);
+    if (count($keyval) == 2)
+       $myPost[$keyval[0]] = urldecode($keyval[1]);
+  }
+  // read the IPN message sent from PayPal and prepend 'cmd=_notify-validate'
+  $req = 'cmd=_notify-validate';
+  if(function_exists('get_magic_quotes_gpc')) {
+     $get_magic_quotes_exists = true;
+  } 
+  foreach ($myPost as $key => $value) {        
+     if($get_magic_quotes_exists == true && get_magic_quotes_gpc() == 1) { 
+          $value = urlencode(stripslashes($value)); 
+     } else {
+          $value = urlencode($value);
+     }
+     $req .= "&$key=$value";
+  }
+
+  $purchaseId = $myPost['custom'];
+  watchdog('sbbbuysquares', "Received IPN message for purchase id $purchaseId");
+   
+   
+  // Step 2: POST IPN data back to PayPal to validate
+   
+  $ch = curl_init('https://www.paypal.com/cgi-bin/webscr');
+  curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+  curl_setopt($ch, CURLOPT_POST, 1);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $req);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+  curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Connection: Close'));
+   
+  // In wamp-like environments that do not come bundled with root authority certificates,
+  // please download 'cacert.pem' from "http://curl.haxx.se/docs/caextract.html" and set 
+  // the directory path of the certificate as shown below:
+  // curl_setopt($ch, CURLOPT_CAINFO, dirname(__FILE__) . '/cacert.pem');
+  if( !($res = curl_exec($ch)) ) {
+      // error_log("Got " . curl_error($ch) . " when processing IPN data");
+      curl_close($ch);
+      exit;
+  }
+  curl_close($ch);
+
+  // inspect IPN validation result and act accordingly
+
+  $errorsDb = new SquaresIPNErrorsDatabase();
+  if (strcmp ($res, "INVALID") == 0) {
+    // IPN invalid, log for manual investigation
+    $errorsDb->storeError("invalid message", "Invalid message for purchase $purchaseId: the response from PayPal was $res");
+    watchdog('sbbbuysquares', "Invalid message for purchase $purchaseId: the response from PayPal was $res");
+    return;
+  } 
+
+  // The IPN is verified, process it:
+  // check whether the payment_status is Completed
+  // check that txn_id has not been previously processed
+  // check that receiver_email is your Primary PayPal email
+  // check that payment_amount/payment_currency are correct
+  // process the notification
+
+  // assign posted variables to local variables
+  $item_name = $_POST['item_name'];
+  $item_number = $_POST['item_number'];
+  $payment_status = $_POST['payment_status'];
+  $payment_amount = $_POST['mc_gross'];
+  $payment_currency = $_POST['mc_currency'];
+  $txn_id = $_POST['txn_id'];
+  $receiver_email = $_POST['receiver_email'];
+  $payer_email = $_POST['payer_email'];
+  $quantity = $_POST['quantity'];
+
+  // To test:
+//  foreach($_POST as $key => $value) {
+//    echo $key." = ". $value."<br>";
+//  }
+  $purchase = sbbbuysquares_get_purchase($purchaseId);
+  if($purchase == null) {
+    $errorsDb->storeError("unknown purchase id", $raw_post_data);
+    // TODO return anything to PayPal here?
+    watchdog('sbbbuysquares', "Unknown purchase id: $purchaseId. More details: see the database");
+    return;
+  }
+  // check whether we already processed this purchase
+  $double = false;
+  if($purchase['completed']) {
+    $errorsDb->storeError("already processed", $raw_post_data);
+    $double = true;
+    watchdog('sbbbuysquares', "Already processed this purchase id: $purchaseId. More details: see the database");
+  }
+  // test correct quantity for this message
+  $nbSquares = $purchase['horizontal'] * $purchase['vertical'];
+  $correct = $quantity == $nbSquares;
+  if(! $correct) {
+    $errorsDb->storeError("incorrect quantity", $raw_post_data);
+    watchdog('sbbbuysquares', "Incorrect quantity for purchase id: $purchaseId. More details: see the database");
+  }
+
+  // update the existing webform submission webform submission  
+  sbbbuysquares_set_purchase_paid($purchaseId, $double, $correct);
+
+  // do not run this through templating
+  drupal_exit();
+}
+
+function sbbbuysquares_paypal_success() {
+  return '
+<div class="row">
+  <div class="col-xs-12">
+    <p class="text-center">Thank you for supporting space research. <span class="accent">You are great.</span></p>
+    <p class="text-center">We will contact you with further details as quickly as possible!</p>
+  </div>
+</div>';
+}
+
+function sbbbuysquares_paypal_fail() {
+  return '
+<div class="row">
+  <div class="col-xs-12">
+    <p class="text-center">It seems that something went wrong. If we did that, we apologize. Try again!</p>
+  </div>
+</div>';
+}
+
+

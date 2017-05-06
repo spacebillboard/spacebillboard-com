@@ -1,0 +1,3 @@
+name = SBB Coming Soon
+description = Provides the functionality for checking log-in and showing the coming soon page if needed.
+core = 7.x

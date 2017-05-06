@@ -1,0 +1,3 @@
+name = SBB Personal Messages
+description = Provides the back-end functionality for purchasing personal messages on the billboard.
+core = 7.x

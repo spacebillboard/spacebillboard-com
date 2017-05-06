@@ -1,0 +1,470 @@
+<?php
+module_load_include('inc.php', 'sbbpersonalmsg', 'classes/WebformIdDatabase');
+
+function sbbpersonalmsg_schema() {
+  $schema['sbbpersonalmsg_purchases'] = array(
+    'description' => 'Stores the initiated purchases of personal messages.',
+    'fields' => array(
+      'id' => array(
+        'description' => "The Facebook id of the Facebook user.",
+        'type' => 'varchar',
+        'length' => 100
+      ),
+      'name' => array(
+        'description' => 'The full name to put on the certificate',
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+      ),    
+      'message' => array(
+        'description' => 'The message to put on the certificate',
+        'type' => 'varchar',
+        'length' => 140,
+        'not null' => TRUE,
+      ),      
+      'email' => array(
+        'description' => 'The email to send the certificate to',
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+      ),      
+      'url' => array(
+        'description' => 'The URL of the website of the user',
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+      ),     
+      'twitter' => array(
+        'description' => 'The twitter username to which to send updates to',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),      
+      'show_name_on_thankyou' => array(
+        'description' => 'whether the user wants to show his name on the thank-you page or not',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => FALSE,
+      ),       
+      'show_url_on_thankyou' => array(
+        'description' => 'whether the user wants to show his URL on the thank-you page or not',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => FALSE,
+      ),   
+      'show_twitter_on_thankyou' => array(
+        'description' => 'whether the user wants to show his name on the thank-you page or not',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => FALSE,
+      ), 
+      'initiated_datetime' => array(
+        'description' => "The date and time when this purchase was initiated",
+        'type' => 'datetime',
+        'mysql_type' => 'datetime',
+        'not null' => TRUE
+      ), 
+      'completed_datetime' => array(
+        'description' => "The date and time when this purchase was completed",
+        'type' => 'datetime',
+        'mysql_type' => 'datetime',
+        'not null' => FALSE
+      ),       
+      'correct' => array(
+        'description' => 'whether the paid amount was correct for the message',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => FALSE,
+      ),  
+      'ipn' => array(
+        'description' => 'The raw IPN message sent by PalPal',
+        'type' => 'varchar',
+        'length' => 2000,
+        'not null' => FALSE,
+      )
+    ),
+    'indexes' => array(),
+    'foreign keys' => array(),
+    'primary key' => array('id')
+  );
+  $schema['sbbpersonalmsg_ipn_errors'] = array(
+    'description' => 'Stores the IPN messages for unknown purchases',
+    'fields' => array(
+      'id' => array(
+        'description' => "Just an id for this message",
+        'type' => 'serial',
+        'not null' => TRUE,
+      ),
+      'received_datetime' => array(
+        'description' => "The date and time when this message was received",
+        'type' => 'datetime',
+        'mysql_type' => 'datetime',
+        'not null' => FALSE
+      ),        
+      'error' => array(
+        'description' => 'a description of the error',
+        'type' => 'varchar',
+        'length' => 30,
+        'not null' => FALSE,
+      ),  
+      'ipn' => array(
+        'description' => 'The raw IPN message sent by PalPal',
+        'type' => 'varchar',
+        'length' => 2000,
+        'not null' => FALSE,
+      )
+    ),
+    'indexes' => array(),
+    'foreign keys' => array(),
+    'primary key' => array('id')
+  );
+
+  return $schema;
+}
+
+function sbbpersonalmsg_enable() {
+  // now also create the webform
+  // do not do this if it already exits
+  $nid = variable_get('sbbpersonalmsg_purchases_webform_id');
+  if($nid != null && node_load($nid) !== FALSE) {
+    watchdog('sbbpersonalmsg', "Did not create new webform for storing purchased personal messages since it already exists (nid=$nid)");
+    return;
+  }
+  $node = new stdClass();
+  $node->type = 'webform';
+  node_object_prepare($node);
+  $node->title = 'Purchased personal messages';
+  $node->language = 'en';
+  $node->body[LANGUAGE_NONE][0]['value']   = '';
+  $node->body[LANGUAGE_NONE][0]['format']  = 'full_html';
+  $node->uid = 1;
+  $node->promote = 0;
+  $node->comment = 0;
+  // Create the webform components.
+  $components = array(
+    array(
+      'name' => 'Purchase ID',
+      'form_key' => 'purchase_id',
+      'type' => 'textfield',
+      'mandatory' => 1,
+      'weight' => 10,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+      ),
+    ),
+    array(
+      'name' => 'Name',
+      'form_key' => 'name',
+      'type' => 'textfield',
+      'mandatory' => 1,
+      'weight' => 5,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+      ),
+    ),
+    array(
+      'name' => 'Message',
+      'form_key' => 'message',
+      'type' => 'textfield',
+      'mandatory' => 1,
+      'weight' => 10,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+      ),
+    ),
+    array(
+      'name' => 'Email',
+      'form_key' => 'email',
+      'type' => 'email',
+      'mandatory' => 1,
+      'weight' => 25,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+      ),
+    ),
+    array(
+      'name' => 'URL',
+      'form_key' => 'url',
+      'type' => 'textfield',
+      'mandatory' => 0,
+      'weight' => 10,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+      ),
+    ),
+    array(
+      'name' => 'Twitter',
+      'form_key' => 'twitter',
+      'type' => 'textfield',
+      'mandatory' => 0,
+      'weight' => 10,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+      ),
+    ),
+    array(
+      'name' => 'Show name on thank-you',
+      'form_key' => 'show_name',
+      'type' => 'select',
+      'mandatory' => 1,
+      'weight' => 0,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+        'items' => "yes|Yes\nno|No",
+        'aslist' => 1,
+      )
+    ),
+    array(
+      'name' => 'Show URL on thank-you',
+      'form_key' => 'show_url',
+      'type' => 'select',
+      'mandatory' => 1,
+      'weight' => 0,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+        'items' => "yes|Yes\nno|No",
+        'aslist' => 1,
+      )
+    ),
+    array(
+      'name' => 'Show Twitter on thank-you',
+      'form_key' => 'show_twitter',
+      'type' => 'select',
+      'mandatory' => 1,
+      'weight' => 0,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+        'items' => "yes|Yes\nno|No",
+        'aslist' => 1,
+      )
+    ),
+    array(
+      'name' => 'Double',
+      'form_key' => 'double',
+      'type' => 'select',
+      'mandatory' => 1,
+      'weight' => 0,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+        'items' => "yes|Yes\nno|No",
+        'aslist' => 1,
+      )
+    ),
+    array(
+      'name' => 'Correct',
+      'form_key' => 'correct',
+      'type' => 'select',
+      'mandatory' => 1,
+      'weight' => 0,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+        'items' => "yes|Yes\nno|No",
+        'aslist' => 1,
+      )
+    ),
+    array(
+      'name' => 'Sent',
+      'form_key' => 'sent',
+      'type' => 'select',
+      'mandatory' => 1,
+      'weight' => 0,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+        'items' => "yes|Yes\nno|No",
+        'aslist' => 1,
+      )
+    ),
+    array(
+      'name' => 'To',
+      'form_key' => 'to',
+      'type' => 'textfield',
+      'mandatory' => 0,
+      'weight' => 10,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+      ),
+    ),
+    array(
+      'name' => 'From is plural',
+      'form_key' => 'from_is_plural',
+      'type' => 'select',
+      'mandatory' => 1,
+      'weight' => 0,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+        'items' => "yes|Yes\nno|No",
+        'aslist' => 1,
+      )
+    ),
+    array(
+      'name' => 'Completed',
+      'form_key' => 'completed',
+      'type' => 'select',
+      'mandatory' => 1,
+      'weight' => 0,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+        'items' => "yes|Yes\nno|No",
+        'aslist' => 1,
+      )
+    ),
+    array(
+      'name' => 'Type',
+      'form_key' => 'type',
+      'type' => 'textfield',
+      'mandatory' => 0,
+      'weight' => 10,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+      ),
+    ),
+    array(
+      'name' => 'To is plural',
+      'form_key' => 'to_is_plural',
+      'type' => 'select',
+      'mandatory' => 1,
+      'weight' => 0,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+        'items' => "yes|Yes\nno|No",
+        'aslist' => 1,
+      )
+    ),
+    array(
+      'name' => 'Language',
+      'form_key' => 'language',
+      'type' => 'textfield',
+      'mandatory' => 0,
+      'weight' => 10,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+      ),
+    ),
+    array(
+      'name' => 'Design',
+      'form_key' => 'design',
+      'type' => 'textfield',
+      'mandatory' => 0,
+      'weight' => 10,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+      ),
+    ),
+    array(
+      'name' => 'Source',
+      'form_key' => 'source',
+      'type' => 'textfield',
+      'mandatory' => 0,
+      'weight' => 10,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+      ),
+    )
+  );
+
+
+/**
+  
+  The correct data sequence:
+
+  $data = array( // this sequence is verified and correct
+    1 => array('value' => array("id")), // id
+    2 => array('value' => array("name")), // name
+    3 => array('value' => array("message")), // message
+    4 => array('value' => array("email")), // email
+    5 => array('value' => array("url")), // url
+    6 => array('value' => array("twitter")), / twitter
+    7 => array('value' => array("showNameOnThankYou")), // showNameOnThankYou
+    8 => array('value' => array("showURLOnThankYou")), // showURLOnThankYou
+    9 => array('value' => array("showTwitterOnThankYou")), // showTwitterOnThankYou
+    10 => array('value' => array("double")), // double
+    11 => array('value' => array("correct")), // correct
+    12 => array('value' => array("sent")), // sent
+    13 => array('value' => array("to")), // to 
+    14 => array('value' => array("fromIsPlural")), // fromIsPlural
+    15 => array('value' => array("completed")), // completed
+    16 => array('value' => array("type")), // type
+    17 => array('value' => array("toIsPlural")), // toIsPlural
+  );
+
+**/
+  // Setup notification email.
+  $emails = array(
+    array(
+      'email' => 'maarten@spacebillboard.com',
+      'subject' => 'default',
+      'from_name' => 'default',
+      'from_address' => 'default',
+      'template' => 'default',
+      'excluded_components' => array(),
+    ),
+  );
+  // Attach the webform to the node.
+  $node->webform = array(
+    'confirmation' => '',
+    'confirmation_format' => NULL,
+    'redirect_url' => '<confirmation>',
+    'status' => '1',
+    'block' => '0',
+    'teaser' => '0',
+    'allow_draft' => '0',
+    'auto_save' => '0',
+    'submit_notice' => '1',
+    'submit_text' => '',
+    'submit_limit' => '-1', // User can submit more than once.
+    'submit_interval' => '-1',
+    'total_submit_limit' => '-1',
+    'total_submit_interval' => '-1',
+    'record_exists' => TRUE,
+    'roles' => array(
+      0 => '1', // Anonymous user can submit this webform.
+    ),
+    'emails' => $emails,
+    'components' => $components,
+  );
+  // Save the node.
+  node_save($node);
+  $nid = $node->nid;
+  variable_set('sbbpersonalmsg_purchases_webform_id', $nid);
+  watchdog('sbbpersonalmsg', "Created new webform for storing the purchased personal messages (nid=$nid)");
+}

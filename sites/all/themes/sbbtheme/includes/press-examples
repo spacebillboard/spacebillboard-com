@@ -1,0 +1,40 @@
+PRESS RELEASES
+============================
+
+<h3>SpaceBillboard, the first billboard in Space (12/08/2014)</h3>
+
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#20140812-en" role="tab" data-toggle="tab">English</a></li>
+  <li><a href="#20140812-nl" role="tab" data-toggle="tab">Nederlands</a></li>
+  <li><a href="#20140812-fr" role="tab" data-toggle="tab">Fran&ccedil;ais</a></li>
+  <li><a href="#20140812-es" role="tab" data-toggle="tab">Espa&ntilde;ol</a></li>
+</ul>
+<div id="" class="tab-content">
+  <div class="tab-pane active" id="20140812-en">
+    <p>A press release in English</p>
+  </div>
+  <div class="tab-pane" id="20140812-nl">
+    <p>Een pers release in het Nederlands</p>
+  </div>
+  <div class="tab-pane" id="20140812-fr">
+    <p>Une press release en Fran&ccedil;ais</p>
+  </div>
+  <div class="tab-pane" id="20140812-es">
+    <p>Uno presso releaso en Espa&ntilde;ol</p>
+  </div>
+</div>
+
+<h4>Covered in:</h4>
+
+<ul>
+  <li>De Standaard (24/09/2014)</li>
+  <li>The Times (24/09/2014)</li>
+</ul>
+
+PRESS COVERAGE
+=========================
+
+<ul>
+  <li>De Standaard (24/09/2014): "KUL doet blablabla"</li>
+  <li>The Times (24/09/2014): "Crazy Belgian PhD students do blablabla"</li>
+</ul>

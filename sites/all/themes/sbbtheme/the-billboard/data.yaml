@@ -1,0 +1,2944 @@
+brands:
+  electrabel:
+    added: 2014-10-04 11:15:19.686754
+    billboard_position:
+      column: 8
+      row: 3
+    billboard_size:
+      height: 2
+      width: 6
+    featured_sponsors:
+    - image: electrabel-2
+      name: Electrabel
+      url: https://www.electrabel.com/
+    - image: electrabel-1
+      name: Engie
+      url: http://www.engie.com/
+    name: Electrabel and Engie
+    url: https://www.electrabel.com/
+  emergency:
+    added: 2015-04-22 13:52:59.825060
+    billboard_position:
+      column: 7
+      row: 11
+    billboard_size:
+      height: 2
+      width: 2
+    name: Emergency Belgium
+    url: http://www.emergencybe.org/
+  hellobank:
+    added: 2015-07-10 10:37:52.592720
+    billboard_position:
+      column: 11
+      row: 7
+    billboard_size:
+      height: 1
+      width: 1
+    name: Hello bank!
+    url: https://www.hellobank.be/en
+  kinepolis:
+    added: 2014-10-08 08:29:32.281743
+    billboard_position:
+      column: 12
+      row: 8
+    billboard_size:
+      height: 2
+      width: 2
+    name: Kinepolis
+    url: http://kinepolis.be/
+  maria-ter-engelen:
+    added: 2015-04-22 13:54:32.143849
+    billboard_position:
+      column: 13
+      row: 11
+    billboard_size:
+      height: 2
+      width: 2
+    name: Zorgcentrum Maria-Ter-Engelen
+    url: http://www.maria-ter-engelen.be/
+  microsoft:
+    added: 2014-10-07 11:59:18.584748
+    billboard_position:
+      column: 8
+      row: 8
+    billboard_size:
+      height: 2
+      width: 2
+    name: Microsoft
+    url: http://www.microsoft.com/
+  mobilevikings:
+    added: 2014-09-24 20:28:39.028223
+    billboard_position:
+      column: 4
+      row: 8
+    billboard_size:
+      height: 2
+      width: 2
+    name: Mobile Vikings
+    url: http://mobilevikings.com/
+  oreo:
+    added: 2015-03-24 17:12:41.030187
+    billboard_position:
+      column: 10
+      row: 7
+    billboard_size:
+      height: 1
+      width: 1
+    name: Oreo
+    url: http://www.oreo.com/
+  prothetica:
+    added: 2014-10-27 14:09:01.172506
+    billboard_position:
+      column: 12
+      row: 6
+    billboard_size:
+      height: 1
+      width: 1
+    name: Prothetica
+    url: http://prothetica.com/
+  seeq:
+    added: 2014-09-24 21:07:28.194017
+    billboard_position:
+      column: 16
+      row: 8
+    billboard_size:
+      height: 1
+      width: 2
+    name: SEEQ
+    url: http://www.seeq.be/
+  sophos:
+    added: 2015-01-21 19:40:49.555267
+    billboard_position:
+      column: 8
+      row: 6
+    billboard_size:
+      height: 1
+      width: 1
+    name: Sophos
+    url: http://www.sophos.com
+  walnuts-australia:
+    added: 2015-02-21 09:43:06.885965
+    billboard_position:
+      column: 13
+      row: 6
+    billboard_size:
+      height: 1
+      width: 1
+    name: Walnuts Australia
+    url: http://www.walnutsaustralia.com.au/
+  whizzkids-united:
+    added: 2015-04-22 13:53:47.046905
+    billboard_position:
+      column: 10
+      row: 11
+    billboard_size:
+      height: 2
+      width: 2
+    name: Whizzkids United
+    url: http://www.whizzkidsunited.org/
+christmas-messages: null
+personal-message-squares:
+- added: 2014-09-22 11:44:52.869345
+  column: 10
+  row: 6
+- added: 2015-02-07 11:55:52.869345
+  column: 11
+  row: 6
+- added: 2015-05-03 11:55:52.869345
+  column: 9
+  row: 6
+personal-messages:
+- added: 2014-10-05 18:33:21.846264
+  from_is_plural: false
+  id: twp
+  message: Entrepreneurs from infinity & beyond, we wish you all the success, THINK
+    with people will help you whenever you get stuck in a black hole.
+  name: THINK with people
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: true
+  show_url_on_thankyou: true
+  to: null
+  to_is_plural: false
+  twitter_username: thinkwpeople
+  type: null
+  url: http://www.thinkwithpeople.be/
+- added: 2014-10-07 20:29:44.106608
+  from_is_plural: false
+  id: thocor
+  message: 'From all around the world: happy birthday, Corre!'
+  name: Corre
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: null
+  to_is_plural: false
+  twitter_username: null
+  type: null
+  url: null
+- added: 2014-10-07 20:13:39.442303
+  from_is_plural: false
+  id: tijger
+  message: This is for you, Kathleen, couldn't have done this without you.
+  name: Kathleen
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: null
+  to_is_plural: false
+  twitter_username: null
+  type: null
+  url: null
+- added: 2014-10-11 12:58:41.376626
+  from_is_plural: false
+  id: a643be56
+  message: <3 kruk - pokkel
+  name: Wouter
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: null
+  to_is_plural: false
+  twitter_username: null
+  type: null
+  url: http://
+- added: 2014-10-11 12:58:45.449670
+  from_is_plural: false
+  id: 3ab48bcc
+  message: 'Love Frengky '
+  name: Verlinden Iweins de Wavrans
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: null
+  to_is_plural: false
+  twitter_username: null
+  type: null
+  url: http://
+- added: 2014-10-11 12:58:49.449010
+  from_is_plural: false
+  id: b14ca728
+  message: Tess & Raf Van Zeebroeck ly m&v
+  name: Moeke en Vake
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: null
+  to_is_plural: false
+  twitter_username: null
+  type: null
+  url: http://
+- added: 2014-10-11 12:58:53.462509
+  from_is_plural: false
+  id: 648dce86
+  message: CFD Squirrel FF
+  name: Romain Swerts
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: null
+  to_is_plural: false
+  twitter_username: null
+  type: null
+  url: http://
+- added: 2014-10-11 12:58:57.654301
+  from_is_plural: false
+  id: 85a9e24b
+  message: 73 de ON7AMI from Space
+  name: Jean Paul Mertens
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: true
+  to: null
+  to_is_plural: false
+  twitter_username: null
+  type: null
+  url: http://www.on7ami.be
+- added: 2014-10-11 12:59:01.936651
+  from_is_plural: false
+  id: 985a7003
+  message: LOVE U MAXIM ALEXY ESTEBAN DIEGO - PAPS & TONTON
+  name: Paps & Tonton
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: null
+  to_is_plural: false
+  twitter_username: null
+  type: null
+  url: http://
+- added: 2014-10-11 12:59:06.158854
+  from_is_plural: false
+  id: 72e44a03
+  message: Ariane, Stefaan, Lotte, Robrecht, Stella, Vic, William and Gaulthier love
+    space
+  name: Stefaan Delbaere
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: null
+  to_is_plural: false
+  twitter_username: null
+  type: null
+  url: http://
+- added: 2014-10-11 13:02:51.238779
+  from_is_plural: false
+  id: 0769505d
+  message: Love hou Charlotte Matthys
+  name: Blockx Tommy
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: true
+  show_url_on_thankyou: false
+  to: null
+  to_is_plural: false
+  twitter_username: Tommyblockx
+  type: null
+  url: http://
+- added: 2014-10-13 10:08:48.476246
+  from_is_plural: false
+  id: 11d35c69
+  message: '  ad astra   Clinique Care  '
+  name: Clinique CARE
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: true
+  to: null
+  to_is_plural: false
+  twitter_username: null
+  type: null
+  url: http://clinique-care.com
+- added: 2014-10-21 22:06:26.510188
+  from_is_plural: false
+  id: 878edcab
+  message: mvdv.com
+  name: Michiel Van de Veire
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: true
+  show_url_on_thankyou: true
+  to: null
+  to_is_plural: false
+  twitter_username: vandeveire
+  type: null
+  url: http://mvdv.com
+- added: 2014-10-26 10:41:07.482183
+  from_is_plural: false
+  id: ab3a5b21
+  message: Happy B-day Papa! Bedankt dat je steeds paraat staat voor het gezin. Moge
+    de banden in onze familie eeuwig sterk blijven. Veel Liefs!  -Owen
+  name: Patrick Nilens
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: null
+  to_is_plural: false
+  twitter_username: null
+  type: null
+  url: http://
+- added: 2014-10-29 21:09:43.901785
+  from_is_plural: false
+  id: 7c2db808
+  message: Hinc itur ad astra!
+  name: Albert Jorissen
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: null
+  to_is_plural: false
+  twitter_username: null
+  type: null
+  url: http://
+- added: 2014-10-31 09:35:25.508250
+  from_is_plural: false
+  id: 18d2d5e8
+  message: I love you Adeleh. from Bubu.
+  name: Babak Jahedmanesh
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: true
+  show_url_on_thankyou: false
+  to: null
+  to_is_plural: false
+  twitter_username: progroamer
+  type: null
+  url: http://
+- added: 2014-11-18 09:00:14.462876
+  from_is_plural: false
+  id: e15325b9
+  message: ' |   J   | - - - - - - - -           |-@-@-|       | SPACE | - - - - -
+    - - ----------oOOO-^-OOOo---- |   N   | '
+  name: Jan Horemans
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: null
+  to_is_plural: false
+  twitter_username: null
+  type: null
+  url: http://
+- added: 2014-11-20 18:10:30.245354
+  from_is_plural: false
+  id: b2f3b27c
+  message: DO NOT FEAR - ON5EX IS HERE
+  name: Johan Smet
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: true
+  to: null
+  to_is_plural: false
+  twitter_username: null
+  type: null
+  url: http://www.on5ex.be
+- added: 2014-12-17 21:46:41.327521
+  from_is_plural: true
+  id: dcff4835
+  language: en
+  message: 'Onze wens voor jullie: een fijne Kerst en een vreugdevol nieuwjaar!'
+  name: !!python/str "Dani\xEBl & Ria"
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Eline en Yasmine
+  to_is_plural: true
+  twitter_username: ''
+  type: christmas
+  url: http://
+- added: 2014-12-20 15:37:53.997454
+  from_is_plural: false
+  id: c5330489
+  message: Johan en Charlotte voor altijd
+  name: Johan Smets
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: null
+  to_is_plural: false
+  twitter_username: null
+  type: null
+  url: http://
+- added: 2014-12-20 22:28:07.835632
+  from_is_plural: true
+  id: da8f2055
+  language: nl
+  message: Het beste voor 2015!
+  name: Helena & Kenneth
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Dag papa
+  to_is_plural: false
+  twitter_username: ''
+  type: christmas
+  url: http://
+- added: 2014-12-22 09:15:27.353467
+  from_is_plural: true
+  id: cfe7a44d
+  language: nl
+  message: 'Happy holidays '
+  name: Bommi en Bompa
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Peter
+  to_is_plural: false
+  twitter_username: ''
+  type: christmas
+  url: http://
+- added: 2014-12-29 15:47:15.934805
+  from_is_plural: false
+  id: 53f6720a
+  language: en
+  message: You make all other stars fade
+  name: G.
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: To J.
+  to_is_plural: false
+  twitter_username: ''
+  type: christmas
+  url: http://
+- added: 2015-01-16 08:39:24.476960
+  id: c709a6a7
+  message: Reach for the stars, Arnaud ! Oma Isabel
+  name: Isabel Penne
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  twitter_username: null
+  url: http://
+- added: 2015-01-19 20:26:06.307360
+  design: cedric
+  from_is_plural: false
+  id: tijger2
+  language: nl
+  message: Ik hou van jou, helemaal tot aan de maan.
+  name: Maarten
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Kathleen
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-01-20 21:32:17.779073
+  design: cedric
+  from_is_plural: false
+  id: voorsofietje
+  language: nl
+  message: For your smile, sweet goodbye waves, flapping hands when making a point,
+    worldclass hugs and so much more. Loving you is easy!
+  name: Tjorven
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Sofietje
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-01-22 18:32:27.166145
+  design: cedric
+  from_is_plural: false
+  id: electrabel20150122
+  language: nl
+  message: We light up the stars for you
+  name: Electrabel
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: her customers
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-01-28 17:11:28.940949
+  design: darkyr
+  from_is_plural: false
+  id: 276378b4
+  language: nl
+  message: I love you
+  name: michael
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: tammy
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-01 11:36:48.598581
+  id: 062ca362
+  message: peace
+  name: Tristan Cools
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  twitter_username: null
+  url: http://
+- added: 2015-02-03 21:11:49.096576
+  design: lejla
+  from_is_plural: false
+  id: 2ffd0138
+  language: nl
+  message: Ik hou van je tot aan de maan EN TERUG
+  name: Je Lotje (06/12/2013)
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Tom, Chicote, liefje, petatje
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-03 21:11:49.256157
+  design: darkyr
+  from_is_plural: false
+  id: 4a2b3d07
+  language: nl
+  message: <3 X
+  name: Matthias
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Elke
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-03 21:11:49.419384
+  design: darkyr
+  from_is_plural: false
+  id: 32c26a05
+  language: nl
+  message: !!python/str "K\u2764L 1/1/13"
+  name: Kristof
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Liesa
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-03 21:11:49.589087
+  design: lejla
+  from_is_plural: false
+  id: a492e26e
+  language: nl
+  message: Ik hou van je tot aan de maan en terug!
+  name: Jessie
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Tom
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-03 21:11:49.764073
+  design: cedric
+  from_is_plural: false
+  id: 349208ad
+  language: nl
+  message: Love you x
+  name: Kelly
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Tommeke
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-03 21:11:49.935113
+  design: cedric
+  from_is_plural: false
+  id: c90f4f97
+  language: nl
+  message: LYNZW
+  name: Mij
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Jou
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-03 21:11:50.113363
+  design: darkyr
+  from_is_plural: false
+  id: fbc4baeb
+  language: nl
+  message: B <3 L
+  name: Bram
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Lien
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-03 21:11:50.296600
+  design: lejla
+  from_is_plural: false
+  id: fc81042c
+  language: nl
+  message: 'You and me 4-ever and a day
+
+    you are my universe'
+  name: Sam Cobbaert
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Gertie Hermie
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-03 21:19:37.245085
+  design: pell
+  from_is_plural: false
+  id: stiekem
+  language: nl
+  message: Stiekem veel liefs
+  name: Tjorven, Maarten en Jeroen
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Margot
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-04 06:46:21.850198
+  design: darkyr
+  from_is_plural: false
+  id: ce65a3ac
+  language: nl
+  message: Omdat wij het beste zijn dat elkaar is overkomen!
+  name: An
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Karen
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-04 06:46:22.885955
+  design: pell
+  from_is_plural: false
+  id: 114e7917
+  language: nl
+  message: "just by writing to me you make me smile, you make me shine. \nand I want\
+    \ to thank you for that !"
+  name: marc
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: joke
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-04 06:46:24.019343
+  design: lejla
+  from_is_plural: false
+  id: b9241e72
+  language: nl
+  message: '*'
+  name: miet*
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: crazykrak
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-04 20:15:21.514901
+  design: tjorven
+  from_is_plural: false
+  id: f2a385cc
+  language: nl
+  message: FOREVER
+  name: SnowLee
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: MichBowie
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-04 20:15:34.104058
+  design: lejla
+  from_is_plural: false
+  id: 0acadd42
+  language: nl
+  message: <3
+  name: Eloy
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Audrey
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-04 20:15:35.199709
+  design: darkyr
+  from_is_plural: false
+  id: ef3e061a
+  language: nl
+  message: De sterren zullen weten hoeveel ik van je hou!
+  name: Je keps
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Liefste schat
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-04 20:15:36.278036
+  design: darkyr
+  from_is_plural: false
+  id: 2838f21b
+  language: nl
+  message: zie u graag schattie
+  name: Pieter-Jan
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Katrien
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-04 20:15:37.400314
+  design: darkyr
+  from_is_plural: false
+  id: ec4e2112
+  language: nl
+  message: Love of my life
+  name: marc
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: karin
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-04 20:15:38.701472
+  design: lejla
+  from_is_plural: false
+  id: 6aa253a3
+  language: nl
+  message: ILCFE
+  name: Steven Eerdekens
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Celien De Sloovere
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-04 20:15:39.892955
+  design: darkyr
+  from_is_plural: false
+  id: 8765f45a
+  language: nl
+  message: <3
+  name: Sarah
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Sten
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-04 20:15:41.038986
+  design: lejla
+  from_is_plural: false
+  id: 8d21e220
+  language: nl
+  message: Tot @ de maan en terug
+  name: Bobo
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Frums
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-04 20:15:43.344011
+  design: darkyr
+  from_is_plural: false
+  id: ba74af60
+  language: nl
+  message: I love you 4-ever my princess
+  name: Matthias
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Frida
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-04 20:15:53.045064
+  design: lejla
+  from_is_plural: false
+  id: 3965e19f
+  language: nl
+  message: To my shining star.
+  name: Rossella
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Alex
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-04 20:34:22.490177
+  design: darkyr
+  from_is_plural: false
+  id: 3f857110
+  language: nl
+  message: Kevin + Amy 4-ever in space!
+  name: Amy
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Kevin
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-05 07:29:38.261006
+  design: darkyr
+  from_is_plural: false
+  id: 6208b7cd
+  language: nl
+  message: You're my lucky star! TC4ever!
+  name: L1
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Didi
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-05 07:29:53.897152
+  design: darkyr
+  from_is_plural: false
+  id: df37be1a
+  language: en
+  message: You make my world go round
+  name: Little Piep
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Big Piep
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-05 17:01:30.975792
+  design: lejla
+  from_is_plural: false
+  id: 1a290d8d
+  language: nl
+  message: You're the star in my life!
+  name: Yannick
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Ulrike
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-06 07:01:34.154259
+  design: darkyr
+  from_is_plural: false
+  id: a51d679f
+  language: nl
+  message: I love you
+  name: caro
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: paulo
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-06 07:01:35.275823
+  design: pell
+  from_is_plural: false
+  id: dd60cba8
+  language: nl
+  message: Ik zie jou nog altijd graag.
+  name: Arlette
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: 'mijn lieve Luc (zaliger) '
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-06 07:01:36.391790
+  design: darkyr
+  from_is_plural: false
+  id: 1cd48364
+  language: nl
+  message: Ik zie jou guygantisch graag. xxx
+  name: 'Jirina '
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Guytje
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-06 17:01:00.774896
+  design: darkyr
+  from_is_plural: false
+  id: 431acb58
+  language: nl
+  message: 'Ik <3 van jou
+
+    S to J'
+  name: Sarah
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Jack
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-06 17:05:27.303070
+  design: darkyr
+  from_is_plural: false
+  id: 7c97afb7
+  language: nl
+  message: Ik hou van je, voor altijd
+  name: Andy
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Karolien
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-06 17:05:28.474871
+  design: darkyr
+  from_is_plural: false
+  id: 238c78d7
+  language: nl
+  message: <3 u 4ever! xxx
+  name: Peter
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Monja
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-06 17:05:29.619320
+  design: darkyr
+  from_is_plural: false
+  id: a5d7d83c
+  language: nl
+  message: 'Our brother- & loveship are tattoed in my mind and life, forever '
+  name: 'brother '
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: 'sister '
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-06 17:05:30.819353
+  design: pell
+  from_is_plural: false
+  id: 5f2278db
+  language: nl
+  message: Ik zin a geere!
+  name: ons Greta
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Smedtske
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-06 17:05:31.977790
+  design: darkyr
+  from_is_plural: false
+  id: 44b68fe7
+  language: nl
+  message: I Love YOU ! XO
+  name: !!python/str "Val\xE9rie"
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Frederik
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-06 17:05:33.145522
+  design: darkyr
+  from_is_plural: false
+  id: 4332e8e1
+  language: nl
+  message: <3 u 4evr!you're the best!X
+  name: Matthias
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: !!python/str "H\xE9lo\xEFse"
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-06 17:05:34.377893
+  design: lejla
+  from_is_plural: false
+  id: f76771ef
+  language: nl
+  message: I love you, poepie x
+  name: Katia
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: 'Olivier '
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-06 17:05:35.579923
+  design: tjorven
+  from_is_plural: false
+  id: 809f4bdb
+  language: en
+  message: You are my greatest love forever <3
+  name: Bouchier Guillian
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Sophie Kuder
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-06 17:07:32.770122
+  design: lejla
+  from_is_plural: false
+  id: 5e3d9e12
+  language: nl
+  message: !!python/str "Je pour \u221E!"
+  name: Principito
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: !!python/str "Peque\xF1o Zorro"
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 11:46:32.754435
+  design: tjorven
+  from_is_plural: false
+  id: 350d5877
+  language: nl
+  message: 26/07/2013
+  name: jemma
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: matt
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 11:46:47.280208
+  design: lejla
+  from_is_plural: false
+  id: 04d89ef2
+  language: nl
+  message: 'You are my world. It''s written in the stars. '
+  name: Debra
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Paul
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 11:46:52.571211
+  design: darkyr
+  from_is_plural: false
+  id: 64641c8e
+  language: nl
+  message: Always U
+  name: Sarah Twirly Stewart
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Andy Bettsy Betts
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 11:46:57.709880
+  design: tjorven
+  from_is_plural: false
+  id: 55074d02
+  language: nl
+  message: Love you forever
+  name: Joan
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Dave
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 11:47:03.593532
+  design: lejla
+  from_is_plural: false
+  id: 0fd64f92
+  language: nl
+  message: <3
+  name: Jamie
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: annie
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 11:47:07.430241
+  design: darkyr
+  from_is_plural: false
+  id: b99462ae
+  language: nl
+  message: Forever
+  name: Katy
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Rob
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 11:49:01.185263
+  design: lejla
+  from_is_plural: false
+  id: b98c8fb9
+  language: nl
+  message: You're a dream come true, this is my 'wish upon a star' for you xx
+  name: Ruben
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Helentijntje
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 11:51:10.229751
+  design: lejla
+  from_is_plural: false
+  id: d72688c4
+  language: nl
+  message: You are my star 4 ever!
+  name: Steven
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Yentel
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 11:51:17.547488
+  design: lejla
+  from_is_plural: false
+  id: 3daf4cd9
+  language: nl
+  message: S<3C
+  name: Sidje
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Wokje
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 11:51:22.675690
+  design: lejla
+  from_is_plural: false
+  id: 8264c9bd
+  language: nl
+  message: Red ik ga je girn zien untill im dead!!!
+  name: Blackske
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Redje
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 11:51:28.078043
+  design: darkyr
+  from_is_plural: false
+  id: d9aabb0c
+  language: nl
+  message: Come what may I will love you Until my dying day
+  name: Ann-Sofie
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Maarten-Jan
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 11:51:36.310180
+  design: darkyr
+  from_is_plural: false
+  id: c406a68e
+  language: nl
+  message: I love you to the moon &back
+  name: V. Erika
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: N. Jacob
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 11:51:42.830084
+  design: darkyr
+  from_is_plural: false
+  id: e6828018
+  language: nl
+  message: <3 u 2 the moon & back
+  name: Soohie,
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Joohie, mollie, mooitje
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 11:51:51.367527
+  design: lejla
+  from_is_plural: false
+  id: 0f632e17
+  language: nl
+  message: Love You Forever
+  name: Snoopy
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Muizeke
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 11:51:55.302421
+  design: pell
+  from_is_plural: false
+  id: 5614a83a
+  language: nl
+  message: ILU4ever, P. is our goal! xxx
+  name: V-tje
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: K-tje
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 11:52:00.018114
+  design: lejla
+  from_is_plural: false
+  id: 7d354017
+  language: nl
+  message: I Love you! xxx
+  name: Lennert
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Rebecca
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 12:03:22.845773
+  design: darkyr
+  from_is_plural: false
+  id: 3223eb65
+  language: nl
+  message: Our love is in the air!
+  name: ileen
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: bram
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 21:43:56.421116
+  design: lejla
+  from_is_plural: false
+  id: fd74532b
+  language: nl
+  message: I love u to the stars and back
+  name: Jo
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Hannah
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 21:45:32.751863
+  design: tjorven
+  from_is_plural: false
+  id: 66a457e6
+  language: nl
+  message: Ik hou van jou x
+  name: Patrick
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Patricia
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 21:45:39.198301
+  design: lejla
+  from_is_plural: false
+  id: 4f4a7eb8
+  language: nl
+  message: ICHFILWY!
+  name: Lene
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Wim
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 21:45:50.174902
+  design: pell
+  from_is_plural: false
+  id: a2773e6d
+  language: nl
+  message: <3
+  name: Mama
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Mijn liefste Elise
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 21:45:56.068990
+  design: lejla
+  from_is_plural: false
+  id: 0e100d29
+  language: nl
+  message: my love
+  name: Dylan
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Martje
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 21:46:36.110462
+  design: tjorven
+  from_is_plural: false
+  id: 10576d62
+  language: nl
+  message: "Het staat in de sterren geschreven\nIk hou van jouw voor altijd! \n"
+  name: Ann
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Thierry
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-07 21:48:29.040214
+  design: darkyr
+  from_is_plural: false
+  id: b626b6e7
+  language: nl
+  message: !!python/str "Lieverd\u2661Ik hou ontzettend veel van Jouw!! Xxx... "
+  name: je liefste popje DZ.
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: 'men allerliefste Beste Liefie '
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-08 09:03:11.187682
+  design: lejla
+  from_is_plural: false
+  id: 48a747bb
+  language: nl
+  message: I love you to the moon and back x
+  name: Tasha
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Tonya
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-08 09:07:11.123140
+  design: darkyr
+  from_is_plural: false
+  id: 44f94fbe
+  language: nl
+  message: We are infinite
+  name: Stefanie Vandierendonck
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Gilles De Baets
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-08 09:07:18.875211
+  design: lejla
+  from_is_plural: false
+  id: 2134b456
+  language: nl
+  message: To the most wonderful woman I ever met. May we stay together forever. Love
+    you.
+  name: Philippe Daems
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Emmanuelle Gibault-Nowak
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-08 20:38:26.613649
+  design: darkyr
+  from_is_plural: false
+  id: 446de244
+  language: nl
+  message: Jani You are mine Always
+  name: WhiteMinder
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: REedaxe Ammara
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-08 20:38:41.288428
+  design: cedric
+  from_is_plural: false
+  id: d363e576
+  language: nl
+  message: 'U''ll always remain in me forever
+
+    Love u'
+  name: arshad
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Shikha
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-08 20:38:49.684704
+  design: pell
+  from_is_plural: false
+  id: 51009f75
+  language: nl
+  message: I'd be lost in space without you xxx
+  name: Lee
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Laura
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-08 20:39:10.116624
+  design: darkyr
+  from_is_plural: false
+  id: 337933a3
+  language: nl
+  message: Love u to the moon & back!
+  name: Jolien
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Ruben
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-08 20:39:15.327536
+  design: darkyr
+  from_is_plural: false
+  id: 12d1e6bd
+  language: nl
+  message: 'Too my shining star.
+
+    Forever love! ..x..'
+  name: Geoffrey
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Caroline
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-08 20:39:21.158441
+  design: cedric
+  from_is_plural: false
+  id: b9c3ab15
+  language: nl
+  message: 'The Love In Our Stars
+
+    14/07/11'
+  name: Matthias
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Elodie
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-08 20:39:25.715708
+  design: cedric
+  from_is_plural: false
+  id: caf9f013
+  language: nl
+  message: Altijd samen
+  name: Sanne
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Ron
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-08 20:41:11.002644
+  design: lejla
+  from_is_plural: false
+  id: 466ed742
+  language: nl
+  message: !!python/str "Nick\u2665Vicky"
+  name: Nick
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Vicky
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-09 18:19:40.005316
+  design: lejla
+  from_is_plural: false
+  id: 594a03eb
+  language: nl
+  message: I love you more <3
+  name: Julie Vanderplas
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Nicolaas Mindreau
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-09 18:19:47.501347
+  design: darkyr
+  from_is_plural: false
+  id: c42c8a5d
+  language: nl
+  message: Ik zie je buitenaards graag.
+  name: Koen T'Sas
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Lieve De Greef
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-09 18:19:52.999284
+  design: tjorven
+  from_is_plural: false
+  id: cfb70d78
+  language: nl
+  message: Jij bent mijn sterretje!
+  name: Oliver
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Liesbeth
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-09 18:19:57.794401
+  design: darkyr
+  from_is_plural: false
+  id: c7ecce1a
+  language: nl
+  message: My only wish is you
+  name: Matteo
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Isabelle
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-09 18:20:08.621882
+  design: darkyr
+  from_is_plural: false
+  id: 2681dceb
+  language: nl
+  message: Actually, you mean a lot more to me than just the world!
+  name: Tim
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Christine
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-09 18:20:15.088422
+  design: darkyr
+  from_is_plural: false
+  id: 0b4b29d4
+  language: nl
+  message: "Wil je met me trouwen? \nLiefs O & A"
+  name: !!python/str "Olivier Savels en Aur\xE9a Savels"
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Lieselotte Denoo
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-09 18:20:43.958774
+  design: darkyr
+  from_is_plural: false
+  id: 32bb475c
+  language: nl
+  message: NZW
+  name: Lysovm! Xxx&...All my L. LN.
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: DLS, LD, Sweet V.,
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-09 18:20:50.737388
+  design: lejla
+  from_is_plural: false
+  id: d9e14d7b
+  language: nl
+  message: 'Happy B
+
+    all the stars who love you'
+  name: Djazzie
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Pol Pol
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-09 18:22:05.475201
+  design: darkyr
+  from_is_plural: false
+  id: 6347f38f
+  language: nl
+  message: I Love you, Always
+  name: Luke
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Vanessa
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-09 18:23:06.204496
+  design: cedric
+  from_is_plural: false
+  id: 7980233a
+  language: nl
+  message: !!python/str "I \u2764 U 'round the world & back!"
+  name: Karen
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Adam
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-09 19:10:42.380155
+  design: lejla
+  from_is_plural: false
+  id: 5f255c7d
+  language: nl
+  message: !!python/str "You're my \u221E"
+  name: !!python/str "Micha\xEBl"
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Elien
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-09 19:10:50.614800
+  design: pell
+  from_is_plural: false
+  id: 19a35f97
+  language: nl
+  message: Te quiero con locura
+  name: Bernardo
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Leslie
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-10 07:18:46.744301
+  design: tjorven
+  from_is_plural: false
+  id: 5beb25e4
+  language: nl
+  message: <3
+  name: 'Princey '
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: 'My Maddie '
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-10 07:18:52.921162
+  design: darkyr
+  from_is_plural: false
+  id: 9173710c
+  language: nl
+  message: !!python/str "\u2764\uFE0F"
+  name: Sare
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Paul
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-10 07:18:57.758756
+  design: lejla
+  from_is_plural: false
+  id: 6acb8610
+  language: nl
+  message: I love you.
+  name: Courteney
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Steven
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-10 07:20:34.784414
+  design: lejla
+  from_is_plural: false
+  id: 1792e76f
+  language: nl
+  message: !!python/str "Our \u221E \u2665 written in the stars!"
+  name: David
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Linde
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-10 07:20:41.050987
+  design: darkyr
+  from_is_plural: false
+  id: d5b7a6a4
+  language: nl
+  message: Ik Hou Van Jou Tot Aan De Sterren En Terug
+  name: Arne Van de Poel
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Clio Slegers
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-10 07:20:46.595180
+  design: darkyr
+  from_is_plural: false
+  id: e3d71ce0
+  language: nl
+  message: Voor altijd Samen x
+  name: !!python/str "Christ& Chantal Bouck\xE9-Bossuyt"
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Chantal & Christ & ons Justien
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-10 07:20:55.221912
+  design: darkyr
+  from_is_plural: false
+  id: ae0119d1
+  language: nl
+  message: schat ik hou van je voor eeuwig en altijd :)
+  name: Yon-Ko Correwyn
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Carry De Vooght
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-10 09:26:19.054484
+  design: lejla
+  from_is_plural: false
+  id: 90da97db
+  language: nl
+  message: !!python/str "Hviezda medzi hviezdami \u2665"
+  name: pan Drzak
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Kuzmovacik
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-11 07:46:08.946158
+  design: tjorven
+  from_is_plural: false
+  id: '01435510'
+  language: nl
+  message: !!python/str "\u2665 U babe "
+  name: sampath
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: saki
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-11 07:46:16.202863
+  design: lejla
+  from_is_plural: false
+  id: 9979d9a3
+  language: nl
+  message: Prom?
+  name: Gator
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Meagan
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-11 07:46:23.384713
+  design: darkyr
+  from_is_plural: false
+  id: c32ec2fd
+  language: nl
+  message: Luv u!
+  name: Alexis Pfeiffer
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Elis Sassi
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-11 07:46:29.538535
+  design: lejla
+  from_is_plural: false
+  id: d89a8efa
+  language: nl
+  message: I love you
+  name: 'Holly '
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: 'Adam '
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-11 07:46:34.808134
+  design: lejla
+  from_is_plural: false
+  id: 0cf403e5
+  language: nl
+  message: Luv u to the moon & back
+  name: Alexis Pfeiffer
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Amy Rapier
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-11 07:47:35.734967
+  design: darkyr
+  from_is_plural: false
+  id: 76fcbbab
+  language: nl
+  message: God zegen en bewaar ons Nadia! <3
+  name: Sep Feyen
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Nadia Torenbeek
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-11 07:47:44.483618
+  design: cedric
+  from_is_plural: false
+  id: '77995435'
+  language: nl
+  message: 4Ever us!
+  name: Steven
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Rebecca
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-11 07:47:50.665513
+  design: lejla
+  from_is_plural: false
+  id: 64af2274
+  language: nl
+  message: 'Ik hou van je, schattie
+
+    Happily ever after'
+  name: Devin
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Ellen
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-11 07:47:58.381449
+  design: darkyr
+  from_is_plural: false
+  id: cb605fe7
+  language: nl
+  message: Love you so much
+  name: Tim Tombeur
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Laura
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-11 07:48:03.479369
+  design: tjorven
+  from_is_plural: false
+  id: f569347c
+  language: nl
+  message: <3 voor ezeltje
+  name: Janne
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Thomas
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-11 07:48:09.738684
+  design: lejla
+  from_is_plural: false
+  id: aed01ea6
+  language: nl
+  message: !!python/str "I \u2665 U"
+  name: Jan
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Eline
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-11 07:48:15.345929
+  design: darkyr
+  from_is_plural: false
+  id: 8be0aba8
+  language: nl
+  message: Poes <3 Teddy
+  name: Alexandra
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Sven
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-11 17:28:10.064868
+  design: darkyr
+  from_is_plural: false
+  id: 4a92fcab
+  language: en
+  message: '!'
+  name: DO WHAT YOU LOVE
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: LOVE WHAT YOU DO
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-11 17:28:25.642945
+  design: darkyr
+  from_is_plural: false
+  id: 7e499c28
+  language: nl
+  message: 'Ik hou van jou helemaal tot aan de maan...en terug! '
+  name: Nele Van den Cruyce
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Christophe Goelen
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-11 17:28:35.957933
+  design: darkyr
+  from_is_plural: false
+  id: 759ee5d6
+  language: nl
+  message: I<3U
+  name: je lieverdje mathilde
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: mijn liefste liefje rob
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-11 17:28:43.331005
+  design: darkyr
+  from_is_plural: false
+  id: 60151ca0
+  language: nl
+  message: Bolleke, Ik hou van jou!
+  name: Glenn Moons
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Zerlina Van Belle
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-11 17:28:48.935311
+  design: darkyr
+  from_is_plural: false
+  id: 13f0823a
+  language: nl
+  message: Real love!
+  name: Glenn
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Seraya
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-12 07:18:04.758979
+  design: cedric
+  from_is_plural: false
+  id: 8528f766
+  language: en
+  message: !!python/str "Arigatto\u2764\uFE0F"
+  name: Chiying Cheung
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Mike Lien
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-12 07:18:12.829888
+  design: cedric
+  from_is_plural: false
+  id: 84dfb0fc
+  language: en
+  message: !!python/str "I\u2764\uFE0FU"
+  name: Lisha Xu
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: MengXia Zhang
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-12 07:18:19.097232
+  design: lejla
+  from_is_plural: false
+  id: dad3a93a
+  language: nl
+  message: I love you more than there are STARS in the sky !
+  name: Paul
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Natasha my love
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-12 17:19:05.769165
+  design: tjorven
+  from_is_plural: false
+  id: 2606026a
+  language: en
+  message: Always yours X
+  name: Rachel
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Mark
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-12 17:19:11.034578
+  design: cedric
+  from_is_plural: false
+  id: 912633a0
+  language: en
+  message: !!python/str "Waiting for u \u2764 Forever"
+  name: Yunting
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Mr. Right
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-12 17:19:15.810265
+  design: lejla
+  from_is_plural: false
+  id: 5837cee0
+  language: en
+  message: Waiting for u
+  name: Yunting
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Mr. Right
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-12 17:19:20.300865
+  design: darkyr
+  from_is_plural: false
+  id: 40ed2e7d
+  language: nl
+  message: !!python/str "I\u2764\uFE0Fyou more than are\u2B50\uFE0Fin the sky!"
+  name: Andy
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Kirby
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-12 17:19:27.050528
+  design: darkyr
+  from_is_plural: false
+  id: 4e2d0a2d
+  language: nl
+  message: 'Our love is written in the stars ! '
+  name: Bob
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Anette
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-13 07:40:42.663176
+  design: darkyr
+  from_is_plural: false
+  id: 14bf68b4
+  language: en
+  message: 4ever&always & then some
+  name: Amy
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Jason
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-13 07:40:48.665695
+  design: darkyr
+  from_is_plural: false
+  id: 039a384b
+  language: en
+  message: iLu CANDy,i'l Vt u 4evr
+  name: Adharna
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Sandhya
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-13 07:40:55.084060
+  design: cedric
+  from_is_plural: false
+  id: d2c5105d
+  language: en
+  message: I love U
+  name: Rachel Du
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Xing
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-13 07:41:57.622022
+  design: darkyr
+  from_is_plural: false
+  id: c2374f9e
+  language: nl
+  message: Krikri, je bent mijn lievelingsster!
+  name: Simon
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: !!python/str "St\xE9phanie"
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-13 07:56:27.780440
+  design: tjorven
+  from_is_plural: false
+  id: 5f51b960
+  language: en
+  message: !!python/str "\u5E0C\u671B\u592A\u7A7A\u89C1\u8BC1\u6211\u4EEC\u7684\u7231\
+    \u60C5"
+  name: !!python/str "\u90ED\u4E00\u51E1"
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: !!python/str "\u738B\u4E3D\u6167"
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-13 16:00:22.934789
+  design: darkyr
+  from_is_plural: false
+  id: 4aca6442
+  language: en
+  message: Ur my sun moon&stars
+  name: Birdie
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Limpet
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-13 16:00:31.520927
+  design: cedric
+  from_is_plural: false
+  id: 5f2989ac
+  language: en
+  message: I<3U
+  name: Mihir
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Greeshma
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-13 16:00:40.188730
+  design: tjorven
+  from_is_plural: false
+  id: 4b9a10bf
+  language: en
+  message: You make my heart Smile.
+  name: Yuzhen Zhang
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Jiangchun Zhang
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-13 16:02:39.141419
+  design: lejla
+  from_is_plural: false
+  id: 88f64b19
+  language: nl
+  message: Mieke, Ik hou zielsveel van je  Zonder streepkes!
+  name: Gunter
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Mich
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-13 16:02:53.989811
+  design: darkyr
+  from_is_plural: false
+  id: 77723af5
+  language: nl
+  message: 'Liefste
+
+    You light up my life x x x'
+  name: Bert Meeus
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Evy Van ROy
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-13 16:03:01.684554
+  design: darkyr
+  from_is_plural: false
+  id: 4ffbfb02
+  language: nl
+  message: It only grows stronger
+  name: Griet
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Jan
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-13 16:03:07.376112
+  design: tjorven
+  from_is_plural: false
+  id: d2d7835d
+  language: nl
+  message: !!python/str "Je t'aime\u2764\uFE0F"
+  name: Snoesje
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Luc
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-13 16:03:12.433930
+  design: lejla
+  from_is_plural: false
+  id: '26150251'
+  language: nl
+  message: !!python/str "Love you Princess! \u2764"
+  name: Potige
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Giraf
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-13 16:34:08.928024
+  design: darkyr
+  from_is_plural: false
+  id: fe1362c5
+  language: en
+  message: You make each day brighter
+  name: Blair
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Kirsty
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-14 00:56:10.062381
+  design: darkyr
+  from_is_plural: false
+  id: fb1d6adf
+  language: en
+  message: U R my Stars
+  name: S
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: M & N & S
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-14 00:56:31.658329
+  design: cedric
+  from_is_plural: false
+  id: c0da5448
+  language: en
+  message: !!python/str "\u8B93\u6211\u5E36\u8457\u4F60\u7684\u611B\u7A7F\u8D8A\u9019\
+    \u7121\u908A\u661F\u969B IK HOU VAN JOU \u2764"
+  name: Shiliang Tian
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Xuedan Zhang
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-14 00:58:15.379366
+  design: darkyr
+  from_is_plural: false
+  id: 4b2e4993
+  language: en
+  message: Be bove bou
+  name: GeGe
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Elhonyo
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-14 00:58:23.490639
+  design: lejla
+  from_is_plural: false
+  id: 31ef47e7
+  language: nl
+  message: Leaf means Love
+  name: Steven
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Sonja
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-14 00:58:28.810662
+  design: darkyr
+  from_is_plural: false
+  id: f97e8b74
+  language: nl
+  message: Our love is written in the stars!
+  name: Alexis
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Hanne
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-14 00:58:39.717343
+  design: darkyr
+  from_is_plural: false
+  id: 981fd93d
+  language: nl
+  message: I<3U
+  name: Sophie
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Pieter
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-14 00:58:44.547852
+  design: lejla
+  from_is_plural: false
+  id: b361b8cf
+  language: nl
+  message: To the moon and back X
+  name: Griet
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Nikitas
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-14 10:33:14.312554
+  design: darkyr
+  from_is_plural: false
+  id: addc0069
+  language: en
+  message: '~'
+  name: 'Yolanda : Will U'
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: 'FXIV : YES, I will'
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-14 10:33:25.764687
+  design: lejla
+  from_is_plural: false
+  id: 9102005a
+  language: en
+  message: I think I'm fallingforyou
+  name: Lu
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Belle
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-14 13:19:36.016375
+  design: darkyr
+  from_is_plural: false
+  id: 155f3a73
+  language: nl
+  message: 'Love you! #meligisoke'
+  name: Lukas
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Heleen
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-14 16:12:40.182167
+  design: cedric
+  from_is_plural: false
+  id: 61e878f4
+  language: en
+  message: !!python/str "\u60F3\u597D\u597D\u5F97\u548C\u4F60\u6C38\u8FDC\u5728\u4E00\
+    \u8D77 \u5C0Fkakat\u4E5F\u8981\u597D\u597D\u7684"
+  name: !!python/str "K\u795E"
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: !!python/str "\u6C13\u795E"
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-14 17:34:19.295085
+  design: darkyr
+  from_is_plural: false
+  id: 4608029b
+  language: nl
+  message: love you ! X
+  name: schoonheidje
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: lieverdje
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-14 19:22:01.630377
+  design: lejla
+  from_is_plural: false
+  id: d6b3dfea
+  language: nl
+  message: Will you be my valentine?
+  name: Olivier
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Meggie
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-15 10:25:29.122663
+  design: darkyr
+  from_is_plural: false
+  id: 4905ad70
+  language: en
+  message: Hi Turtle
+  name: Amy
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Derek
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-15 10:25:40.009032
+  design: lejla
+  from_is_plural: false
+  id: 93988c28
+  language: en
+  message: I don't want to dance like a fool with anyone else :)
+  name: Kenneth
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Alana
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-15 10:25:46.600959
+  design: darkyr
+  from_is_plural: false
+  id: c0385749
+  language: en
+  message: T+G
+  name: Galbraith Saunders
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Tiana Gallant
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-16 17:36:20.603735
+  design: darkyr
+  from_is_plural: false
+  id: 07eb05e4
+  language: nl
+  message: !!python/str "d\u2764D"
+  name: Little d
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Big D
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-21 09:29:27.873374
+  design: darkyr
+  from_is_plural: false
+  id: 4739ffb4
+  language: en
+  message: !!python/str "\u2764\uFE0F21/05/'16 - forever us\u2764\uFE0F"
+  name: Birgit
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Johan
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-02-21 09:29:43.413896
+  design: lejla
+  from_is_plural: false
+  id: 78990c7a
+  language: nl
+  message: For the world you are somebody. For somebody you are the world!
+  name: Petra
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Kees
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-03-10 17:56:28.809376
+  design: darkyr
+  from_is_plural: false
+  id: db5f96a5
+  language: en
+  message: !!python/str "\u2764\uFE0F Theresa, I Love You all the stars in the sky\
+    \ \u2764\uFE0F"
+  name: Yvan
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Theresa
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-03-15 17:53:03.268003
+  design: lejla
+  from_is_plural: false
+  id: f850b671
+  language: nl
+  message: Je t'aime !
+  name: Isabelle
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Albert
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-03-29 16:29:52.230460
+  design: tjorven
+  from_is_plural: false
+  id: a76ed43d
+  language: nl
+  message: '14/2/2015 - 10u - je verlaat deze wereld
+
+    ik blijf van je houden'
+  name: je dochter MARIE
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: MA
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-04-07 20:45:15.583518
+  design: darkyr
+  from_is_plural: false
+  id: e4dcacf4
+  language: nl
+  message: !!python/str "For \u221E^\u221E yours"
+  name: Margot - jouw topwijf!
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Nicholas - mijn held!
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-04-21 08:02:54.568110
+  design: darkyr
+  from_is_plural: false
+  id: f20a3af6
+  language: en
+  message: !!python/str "BFF \u2764\uFE0F"
+  name: Prawn
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  to: Giraffe
+  to_is_plural: false
+  twitter_username: null
+  type: valentine
+  url: null
+- added: 2015-05-03 12:40:11.165394
+  id: jan
+  message: To infinity and beyond
+  name: Jan
+  show_name_on_thankyou: true
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  twitter_username: null
+  url: null
+- added: 2015-06-23 20:04:06.137757
+  id: clijntje
+  message: 'Theoretisch kom je in de eerste dagen van het nieuwe jaar, praktisch doe
+    je toch gewoon je zin maar mama & papa zijn alvast in de wolken: Welkom in het
+    universum, C''lijntje!'
+  name: Kathelijne & Christophe
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  twitter_username: null
+  url: null
+- added: 2015-07-26 10:46:14.732656
+  id: geocaching
+  message: track@geocaching.com GXQQT5
+  name: Geert Vercruyce
+  show_name_on_thankyou: false
+  show_twitter_on_thankyou: false
+  show_url_on_thankyou: false
+  twitter_username: null
+  url: null

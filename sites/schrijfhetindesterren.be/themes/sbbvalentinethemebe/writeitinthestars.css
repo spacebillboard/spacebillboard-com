@@ -1,0 +1,46 @@
+/*****************************
+ *  WriteItInTheStars.com CSS
+ *****************************/
+
+/* ..................... HEADER ..................... */
+
+h1#site-name{
+  position:fixed;z-index:10;
+  left:50%;margin-left:-362px;top:102px;
+}
+
+.admin-menu h1#site-name{top:120px;}
+
+h1#site-name a{
+  width:723px;height:116px;
+  background-image: url("/sites/all/themes/sbbgeneralvalentinetheme/resources/css/css-img/logo-be.png");
+  background-position: left top;
+  display:block;
+  overflow:hidden;
+  text-indent:-900px;
+  text-decoration: none;
+}
+
+@media (max-width: 604px) { /* not sure whether this is the best way to do this */
+  h1#site-name{
+    margin-left: -200px;
+  }
+  h1#site-name a{
+    width: 400px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+@media (max-width: 400px) { /* not sure whether this is the best way to do this */
+  h1#site-name{
+    margin-left: -150px;
+  }
+  h1#site-name a{
+    width: 300px;
+  }
+}
+
+.footer .container .footer-logo{
+  background-image: url("/sites/all/themes/sbbgeneralvalentinetheme/resources/css/css-img/footer-be.png");
+}

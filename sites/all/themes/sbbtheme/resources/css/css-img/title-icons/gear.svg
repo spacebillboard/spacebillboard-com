@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_1"
+   x="0px"
+   y="0px"
+   width="70"
+   height="70"
+   viewBox="0 0 101.5 101.5"
+   enable-background="new 0 0 141 145"
+   xml:space="preserve"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="gear.svg"
+   inkscape:export-filename="/home/maartend/.gvfs/SFTP on webfaction/home/sbb/webapps/beta/sites/all/themes/sbbtheme/resources/css/css-img/gear.png"
+   inkscape:export-xdpi="41.139999"
+   inkscape:export-ydpi="41.139999"><metadata
+   id="metadata23"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs21" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1440"
+   inkscape:window-height="876"
+   id="namedview19"
+   showgrid="false"
+   inkscape:zoom="2.36"
+   inkscape:cx="-115.24179"
+   inkscape:cy="33.558621"
+   inkscape:window-x="0"
+   inkscape:window-y="24"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_1"
+   fit-margin-top="0"
+   fit-margin-left="0"
+   fit-margin-right="0"
+   fit-margin-bottom="0" />
+
+
+
+
+
+
+
+<g
+   id="g3000"
+   style="fill:#ff7f2a;fill-opacity:1"
+   transform="translate(-19.965,-21.83)"><polygon
+     id="polygon3"
+     points="85.799,44 80.133,24 70.792,24 70.639,24 61.298,24 55.632,44 "
+     style="fill:#ff7f2a;fill-opacity:1" /><polygon
+     id="polygon5"
+     points="38.875,64.6 20.715,74.557 22.794,83.664 22.828,83.812 24.908,92.92 45.588,94.01 "
+     style="fill:#ff7f2a;fill-opacity:1" /><polygon
+     id="polygon7"
+     points="44.45,92.583 40.913,112.988 49.33,117.041 49.467,117.107 57.884,121.16 71.63,105.67 "
+     style="fill:#ff7f2a;fill-opacity:1" /><polygon
+     id="polygon9"
+     points="69.805,105.669 83.554,121.157 91.97,117.104 92.108,117.038 100.523,112.984 96.983,92.58 "
+     style="fill:#ff7f2a;fill-opacity:1" /><polygon
+     id="polygon11"
+     points="95.844,94.006 116.526,92.913 118.604,83.805 118.638,83.656 120.715,74.549 102.554,64.595 "
+     style="fill:#ff7f2a;fill-opacity:1" /><polygon
+     id="polygon13"
+     points="102.96,66.375 115,49.524 109.175,42.221 109.079,42.101 103.255,34.799 84.149,42.792 "
+     style="fill:#ff7f2a;fill-opacity:1" /><polygon
+     id="polygon15"
+     points="57.277,42.794 38.17,34.804 32.346,42.107 32.25,42.227 26.427,49.53 38.468,66.38 "
+     style="fill:#ff7f2a;fill-opacity:1" /><path
+     id="path17"
+     d="m 70.716,34.764 c -21.008,0 -38.039,17.031 -38.039,38.039 0,21.008 17.03,38.038 38.039,38.038 21.007,0 38.038,-17.03 38.038,-38.038 0,-21.008 -17.031,-38.039 -38.038,-38.039 z m 0,53.311 c -8.435,0 -15.272,-6.837 -15.272,-15.272 0,-8.435 6.838,-15.272 15.272,-15.272 8.434,0 15.272,6.837 15.272,15.272 0,8.435 -6.838,15.272 -15.272,15.272 z"
+     style="fill:#ff7f2a;fill-opacity:1"
+     inkscape:connector-curvature="0" /></g>
+</svg>

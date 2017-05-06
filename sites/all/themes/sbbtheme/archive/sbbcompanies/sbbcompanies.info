@@ -1,0 +1,3 @@
+name = SBB Companies
+description = Provides the functionality for administering, redirecting and setting cookies for company-specific instances of SpaceBillboard.com
+core = 7.x

@@ -1,0 +1,90 @@
+<?php
+function sbbvoting_schema() {
+  $schema['sbbvoting_fbusers'] = array(
+    'description' => 'Stores the Facebook users who made votes.',
+    'fields' => array(
+      'id' => array(
+        'description' => "The Facebook id of the Facebook user.",
+        'type' => 'int',
+        'size' => 'big',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'name' => array(
+        'description' => 'The full name of the Facebook user',
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+      ),      
+      'first_name' => array(
+        'description' => 'The first name of the Facebook user',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),      
+      'last_name' => array(
+        'description' => 'The last name of the Facebook user',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+      ),      
+      'link' => array(
+        'description' => 'The URL of the profile of the Facebook user',
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+      ),      
+      'gender' => array(
+        'description' => 'The gender of the Facebook user',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+      ),      
+      'locale' => array(
+        'description' => 'The locale of the Facebook user',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+      ),      
+      'timezone' => array(
+        'description' => 'The timezone of the Facebook user',
+        'type' => 'int',
+        'not null' => TRUE,
+      ), 
+      'last_vote' => array(
+        'description' => "The date and time on which the user last voted using Facebook.",
+        'type' => 'datetime',
+        'mysql_type' => 'datetime',
+        'not null' => FALSE
+      ),     
+    ),
+    'indexes' => array(),
+    'foreign keys' => array(),
+    'primary key' => array('id')
+  );
+
+  $schema['sbbvoting_fbvotes'] = array(
+    'description' => 'Stores the votes made by Facebook users.',
+    'fields' => array(
+      'userid' => array(
+        'description' => 'The {fb-users}.id of the Facebook user who made the request.',
+        'type' => 'int',
+        'size' => 'big',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'datetime' => array(
+        'description' => "The date and time on which the vote was made.",
+        'type' => 'datetime',
+        'mysql_type' => 'datetime',
+        'not null' => TRUE
+      ),
+    ),
+    'foreign keys' => array(
+      'userid' => array('fbusers' => 'id')
+    ),
+    'primary key' => array('userid', 'datetime')
+  );
+
+  return $schema;
+}

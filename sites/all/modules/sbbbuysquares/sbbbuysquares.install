@@ -1,0 +1,251 @@
+<?php
+
+function sbbbuysquares_schema() {
+  $schema['sbbbuysquares_ipn_errors'] = array(
+    'description' => 'Stores the IPN messages for unknown purchases',
+    'fields' => array(
+      'id' => array(
+        'description' => "Just an id for this message",
+        'type' => 'serial',
+        'not null' => TRUE,
+      ),
+      'received_datetime' => array(
+        'description' => "The date and time when this message was received",
+        'type' => 'datetime',
+        'mysql_type' => 'datetime',
+        'not null' => FALSE
+      ),        
+      'error' => array(
+        'description' => 'a description of the error',
+        'type' => 'varchar',
+        'length' => 30,
+        'not null' => FALSE,
+      ),  
+      'ipn' => array(
+        'description' => 'The raw IPN message sent by PalPal',
+        'type' => 'varchar',
+        'length' => 2000,
+        'not null' => FALSE,
+      )
+    ),
+    'indexes' => array(),
+    'foreign keys' => array(),
+    'primary key' => array('id')
+  );
+
+  return $schema;
+}
+
+function sbbbuysquares_enable() {
+  // now also create the webform
+  // do not do this if it already exists
+  $nid = variable_get('sbbbuysquares_purchases_webform_id');
+  if($nid != null && node_load($nid) !== FALSE) {
+    watchdog('sbbpersonalmsg', "Did not create new webform for storing purchased squares since it already exists (nid=$nid)");
+  } else {
+    $node = new stdClass();
+    $node->type = 'webform';
+    node_object_prepare($node);
+    $node->title = 'Purchased squares';
+    $node->language = 'en';
+    $node->body[LANGUAGE_NONE][0]['value']   = '';
+    $node->body[LANGUAGE_NONE][0]['format']  = 'full_html';
+    $node->uid = 1;
+    $node->promote = 0;
+    $node->comment = 0;
+    // Create the webform components.
+    $components = array(
+      array(
+        'name' => 'Purchase ID',
+        'form_key' => 'purchase_id',
+        'type' => 'textfield',
+        'mandatory' => 1,
+        'weight' => 10,
+        'pid' => 0,
+        'extra' => array(
+          'title_display' => 'inline',
+          'private' => 0,
+        ),
+      ),
+      array(
+        'name' => 'Name',
+        'form_key' => 'name',
+        'type' => 'textfield',
+        'mandatory' => 1,
+        'weight' => 5,
+        'pid' => 0,
+        'extra' => array(
+          'title_display' => 'inline',
+          'private' => 0,
+        ),
+      ),
+      array(
+        'name' => 'Email',
+        'form_key' => 'email',
+        'type' => 'email',
+        'mandatory' => 1,
+        'weight' => 25,
+        'pid' => 0,
+        'extra' => array(
+          'title_display' => 'inline',
+          'private' => 0,
+        ),
+      ),
+      array(
+        'name' => 'Company',
+        'form_key' => 'company',
+        'type' => 'textfield',
+        'mandatory' => 1,
+        'weight' => 5,
+        'pid' => 0,
+        'extra' => array(
+          'title_display' => 'inline',
+          'private' => 0,
+        ),
+      ),
+      array(
+        'name' => 'Message',
+        'form_key' => 'message',
+        'type' => 'textfield',
+        'mandatory' => 1,
+        'weight' => 10,
+        'pid' => 0,
+        'extra' => array(
+          'title_display' => 'inline',
+          'private' => 0,
+        ),
+      ),
+      array(
+        'name' => 'Horizontal',
+        'form_key' => 'horizontal',
+        'type' => 'textfield',
+        'mandatory' => 1,
+        'weight' => 10,
+        'pid' => 0,
+        'extra' => array(
+          'title_display' => 'inline',
+          'private' => 0,
+        ),
+      ),
+      array(
+        'name' => 'Vertical',
+        'form_key' => 'vertical',
+        'type' => 'textfield',
+        'mandatory' => 1,
+        'weight' => 10,
+        'pid' => 0,
+        'extra' => array(
+          'title_display' => 'inline',
+          'private' => 0,
+        ),
+      ),
+      array(
+        'name' => 'Preferred squares',
+        'form_key' => 'preferred_squares',
+        'type' => 'textfield',
+        'mandatory' => 1,
+        'weight' => 10,
+        'pid' => 0,
+        'extra' => array(
+          'title_display' => 'inline',
+          'private' => 0,
+        ),
+      ),
+      array(
+        'name' => 'Agreed with terms and conditions',
+        'form_key' => 'agreed',
+        'type' => 'select',
+        'mandatory' => 1,
+        'weight' => 0,
+        'pid' => 0,
+        'extra' => array(
+          'title_display' => 'inline',
+          'private' => 0,
+          'items' => "yes|Yes\nno|No",
+          'aslist' => 1,
+        )
+      ),
+      array(
+        'name' => 'Completed',
+        'form_key' => 'completed',
+        'type' => 'select',
+        'mandatory' => 1,
+        'weight' => 0,
+        'pid' => 0,
+        'extra' => array(
+          'title_display' => 'inline',
+          'private' => 0,
+          'items' => "yes|Yes\nno|No",
+          'aslist' => 1,
+        )
+      ),
+      array(
+        'name' => 'Double',
+        'form_key' => 'double',
+        'type' => 'select',
+        'mandatory' => 0,
+        'weight' => 0,
+        'pid' => 0,
+        'extra' => array(
+          'title_display' => 'inline',
+          'private' => 0,
+          'items' => "yes|Yes\nno|No",
+          'aslist' => 1,
+        )
+      ),
+      array(
+        'name' => 'Correct',
+        'form_key' => 'correct',
+        'type' => 'select',
+        'mandatory' => 0,
+        'weight' => 0,
+        'pid' => 0,
+        'extra' => array(
+          'title_display' => 'inline',
+          'private' => 0,
+          'items' => "yes|Yes\nno|No",
+          'aslist' => 1,
+        )
+      )
+    );
+    // Setup notification email.
+    $emails = array(
+      array(
+        'email' => 'maarten@spacebillboard.com',
+        'subject' => 'default',
+        'from_name' => 'default',
+        'from_address' => 'default',
+        'template' => 'default',
+        'excluded_components' => array(),
+      ),
+    );
+    // Attach the webform to the node.
+    $node->webform = array(
+      'confirmation' => '',
+      'confirmation_format' => NULL,
+      'redirect_url' => '<confirmation>',
+      'status' => '1',
+      'block' => '0',
+      'teaser' => '0',
+      'allow_draft' => '0',
+      'auto_save' => '0',
+      'submit_notice' => '1',
+      'submit_text' => '',
+      'submit_limit' => '-1', // User can submit more than once.
+      'submit_interval' => '-1',
+      'total_submit_limit' => '-1',
+      'total_submit_interval' => '-1',
+      'record_exists' => TRUE,
+      'roles' => array(
+        0 => '1', // Anonymous user can submit this webform.
+      ),
+      'emails' => $emails,
+      'components' => $components,
+    );
+    // Save the node.
+    node_save($node);
+    $nid = $node->nid;
+    variable_set('sbbbuysquares_purchases_webform_id', $nid);
+    watchdog('sbbpersonalmsg', "Created new webform for storing the purchased squares (nid=$nid)");
+  }
+}

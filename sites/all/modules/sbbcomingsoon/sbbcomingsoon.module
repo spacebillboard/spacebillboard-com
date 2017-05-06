@@ -1,0 +1,43 @@
+<?php
+
+/**
+ *  Implements hook_init().
+ */
+function sbbcomingsoon_init() {
+  $path = request_path();
+  // Policy: admins can see everything, the rest only the front page (which will should the coming soon page
+  // if the user is not an admin), the coming-soon-buy-form, the coming-soon-contact-form and certain other pages.
+  // Since we only have admin users, it is enough to check whether the user is anonymous to check
+  // whether he is not an admin.
+  if(user_is_anonymous()) { // only do this for anonymous users, the rest is handled by Drupal itself
+    if ($path == "") {
+      // we are on the front page, do nothing here: the page itself manages this
+      return;
+    } elseif (substr($path, 0, 4) == 'user') {
+      // we should still be able to log in and stuff
+      return; 
+    } elseif (substr($path, 0, 9) == 'messages/') {
+      // the message callback should always be accessible
+      return; 
+    } elseif (substr($path, 0, 20) == 'press-during-embargo') {
+      // the press URL should always be accessible
+      return; 
+    } elseif (strstr($path, 'coming-soon-contact-form') || strstr($path, 'node/29')) {
+      // for the contact form on the coming soon page
+      return; 
+    } elseif (strstr($path, 'coming-soon-buy-form') || strstr($path, 'node/33')) {
+      // for the buy form on the coming soon page
+      return; 
+    } elseif (substr($path, 0, 4) == 'blog') {
+      // for the blog page on Coming Soon
+      return; 
+    } elseif (substr($path, 0, 6) == 'httprl') {
+      // for the HTTPRL module
+      return; 
+    } else {
+      // in any other case: redirect to home page to see the "Coming soon"
+      watchdog('sbbcomingsoon', "Access denied: this URL cannot be viewed by anonymous users");
+      drupal_goto();
+    }
+  }
+}

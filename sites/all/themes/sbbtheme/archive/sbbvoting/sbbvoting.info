@@ -1,0 +1,3 @@
+name = SBB Voting
+description = Provides the back-end functionality for SpaceBillboard.com voting with social networks.
+core = 7.x

@@ -1,0 +1,6 @@
+inkscape -f certificaat-vertical.svg --export-pdf test.pdf --export-dpi 600
+
+
+qrcode "http://spacebillboard.com/" > test.png
+qrcode --factory=svg "http://spacebillboard.com/" > test.svg
+

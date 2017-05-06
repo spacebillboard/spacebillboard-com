@@ -1,0 +1,161 @@
+/*****************************
+ *  some stuff (...)
+ *****************************/
+
+table.preferred-squares {
+  border-collapse: collapse;
+}
+table.preferred-squares td {
+  border: 1px solid #ececec;
+  width: 15px;
+  height: 15px;
+}
+table.preferred-squares td.taken {
+  background-color: #dddddd;
+}
+table.preferred-squares td.preferred {
+  background-color: #67bfed;
+}
+table.preferred-squares td.selected {
+  background-color: #dee0ff;
+}
+
+.coming-soon .btn-primary {
+  width: 100%;
+  padding: 10px;
+}
+
+ul.sparse li {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.footer {
+  padding: 0px 0px 0px 0px;
+}
+
+.top-buffer {
+  margin-top: 20px;
+}
+
+
+/* Chevrons */
+.sbb-sidenav .icon-chevron-right {
+  float: right;
+  margin-top: 2px;
+  margin-right: -6px;
+  opacity: .25;
+}
+.sbb-sidenav > li > a:hover {
+  background-color: #f5f5f5;
+}
+.sbb-sidenav a:hover .icon-chevron-right {
+  opacity: .5;
+}
+.sbb-sidenav .active .icon-chevron-right,
+.sbb-sidenav .active a:hover .icon-chevron-right {
+  background-image: url(../img/glyphicons-halflings-white.png);
+  opacity: 1;
+}
+.sbb-sidenav.affix {
+  top: 60px;
+}
+.sbb-sidenav.affix-bottom {
+  position: absolute;
+}
+
+.accordion-heading h4 {
+  display: inline;
+}
+
+.accordion-heading .collapse-icon {
+  float: right;
+  opacity: .25;
+}
+
+h1.page-header {
+  text-align: center;
+  margin: 30px 0 20px 0;
+}
+
+/* Hide breadcrumbs */
+
+.breadcrumb {
+  display: none;
+}
+
+/* For advertisers */
+
+div.earth-bg {
+  background-image: url("/sites/all/themes/sbbtheme/resources/img/for-advertisers/earth.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto 100%;
+  margin-top: 60px;
+  margin-bottom: 100px;
+}
+
+div.earth-bg .row {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.earth-bg .reason.text-left h4 {
+  padding-left: 20px;
+}
+.earth-bg .reason.text-right h4 {
+  padding-right: 20px;
+}
+
+.detailed-reason {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.detailed-reason .title {
+  text-align: center;
+}
+.detailed-reason .title h4 {
+  text-align: left;
+  margin-top: 0px;
+}
+
+iframe.presentation {
+  border-style: none;
+  width: 100%;
+  height: 400px;
+}
+
+div.promo {
+  width: 100%;
+  text-align: center;
+}
+
+div.promo iframe {
+  max-width: 100%;
+}
+
+#example-sizes-table td:first-child {
+  width: 170px;
+}
+
+/*************** Blog from coming-soon page **********************/
+
+.page-node-30 .footer.blog .footer-logo {
+  margin-left: 30px;
+}
+.page-node-30 section#block-system-main {
+  display: none;
+}
+
+/************************* White paper ***************************/
+
+.btn.btn-white-paper {
+  padding: 20px 30px;
+}
+section.white-paper-ad {
+  text-align: center;
+  margin-top: 0px;
+}
+.white-paper-ad .glyphicon {
+  margin-right: 20px;
+}

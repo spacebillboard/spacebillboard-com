@@ -1,0 +1,27 @@
+name = sbbtheme
+description = Our own theme for the sbb website.
+core = 7.x
+engine = phptemplate
+base theme = bootstrap
+
+regions[editor_menu]   	= Editor menu
+regions[navigation]     = 'Navigation'
+regions[header]         = 'Top Bar'
+regions[highlighted]    = 'Highlighted'
+regions[help]           = 'Help'
+regions[content]        = 'Content'
+regions[sidebar_first]  = 'Primary'
+regions[sidebar_second] = 'Secondary'
+regions[footer]         = 'Footer'
+
+stylesheets[all][] = resources/css/sbb.css
+stylesheets[all][] = resources/css/front.css
+stylesheets[all][] = resources/css/konnu.css
+stylesheets[all][] = resources/css/font-awesome-4.2.0/css/font-awesome.css
+stylesheets[all][] = resources/css/bootstrap-social.css
+scripts[] = resources/js/konnu.js
+scripts[] = resources/jquery/js/jquery.scrollTo.js
+scripts[] = resources/jquery/js/jquery.cookie.js
+
+settings[toggle_name] = 0
+settings[toggle_search] = 1

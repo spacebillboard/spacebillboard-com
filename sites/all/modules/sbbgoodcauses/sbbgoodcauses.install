@@ -1,0 +1,124 @@
+<?php
+function sbbgoodcauses_enable() {
+  // now also create the webform
+  // do not do this if it already exits
+  $nid = variable_get('sbbgoodcauses_votes_webform_id');
+  if($nid != null && node_load($nid) !== FALSE) {
+    watchdog('sbbgoodcauses', "Did not create new webform for storing the votes since it already exists (nid=$nid)");
+    return;
+  }
+  $node = new stdClass();
+  $node->type = 'webform';
+  node_object_prepare($node);
+  $node->title = 'Good cause votes';
+  $node->language = 'en';
+  $node->body[LANGUAGE_NONE][0]['value']   = '';
+  $node->body[LANGUAGE_NONE][0]['format']  = 'full_html';
+  $node->uid = 1;
+  $node->promote = 0;
+  $node->comment = 0;
+  // Create the webform components.
+  $components = array(
+    array(
+      'name' => 'id',
+      'form_key' => 'id',
+      'type' => 'textfield',
+      'mandatory' => 1,
+      'weight' => 5,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+      ),
+    ),
+    array(
+      'name' => 'Name',
+      'form_key' => 'name',
+      'type' => 'textfield',
+      'mandatory' => 1,
+      'weight' => 5,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+      ),
+    ),
+    array(
+      'name' => 'URL',
+      'form_key' => 'url',
+      'type' => 'textfield',
+      'mandatory' => 0,
+      'weight' => 10,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+      ),
+    ),
+    array(
+      'name' => 'Reason',
+      'form_key' => 'Reason',
+      'type' => 'textfield',
+      'mandatory' => 1,
+      'weight' => 10,
+      'pid' => 0,
+      'extra' => array(
+        'title_display' => 'inline',
+        'private' => 0,
+      ),
+    )
+  );
+
+
+  /**
+  
+  The correct data sequence:
+
+  $data = array( // this sequence is verified and correct
+    1 => array('value' => array("id")), // id
+    2 => array('value' => array("name")), // name
+    3 => array('value' => array("url")), // url
+    4 => array('value' => array("reason")), // reason
+  );
+
+  **/
+  // Setup notification email.
+  $emails = array(
+    array(
+      'email' => 'maarten@spacebillboard.com',
+      'subject' => 'default',
+      'from_name' => 'default',
+      'from_address' => 'default',
+      'template' => 'default',
+      'excluded_components' => array(),
+    ),
+  );
+  // Attach the webform to the node.
+  $node->webform = array(
+    'confirmation' => '',
+    'confirmation_format' => NULL,
+    'redirect_url' => '<confirmation>',
+    'status' => '1',
+    'block' => '0',
+    'teaser' => '0',
+    'allow_draft' => '0',
+    'auto_save' => '0',
+    'submit_notice' => '1',
+    'submit_text' => '',
+    'submit_limit' => '-1', // User can submit more than once.
+    'submit_interval' => '-1',
+    'total_submit_limit' => '-1',
+    'total_submit_interval' => '-1',
+    'record_exists' => TRUE,
+    'roles' => array(
+      0 => '1', // Anonymous user can submit this webform.
+    ),
+    'emails' => $emails,
+    'components' => $components,
+  );
+  // Save the node.
+  node_save($node);
+  $nid = $node->nid;
+  variable_set('sbbgoodcauses_votes_webform_id', $nid);
+  watchdog('sbbgoodcauses', "Created new webform for storing the votes on good causes (nid=$nid)");
+}

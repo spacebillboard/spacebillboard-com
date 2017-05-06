@@ -1,0 +1,3 @@
+name = SBB Buy Squares
+description = Provides the back-end functionality for purchasing squares on the billboard through PayPal.
+core = 7.x

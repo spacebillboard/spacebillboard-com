@@ -1,0 +1,107 @@
+<?php
+
+module_load_include('php', 'sbbvoting', 'facebook-php-sdk/src/facebook');
+module_load_include('inc.php', 'sbbvoting', 'classes/FacebookUser');
+module_load_include('inc.php', 'sbbvoting', 'classes/FacebookAPI');
+module_load_include('inc.php', 'sbbvoting', 'classes/SpaceBillboardDatabase');
+module_load_include('inc.php', 'sbbvoting', 'classes/HelperFunctions');
+
+/**
+ * Does the URL binding.
+ */
+function sbbvoting_menu() {
+  $items = array();
+  
+  $items['sbbvoting/facebook/add'] = array(
+    'title' => 'SpaceBillboard voting - Facebook - add',
+    'page callback' => 'sbbvoting_facebook_add',
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+
+  return $items;
+}
+
+function sbbvoting_construct_success() {
+  return array(
+    'type' => 'success'
+  );
+}
+
+function sbbvoting_construct_authn_exc() {
+  return array(
+    'type' => 'error',
+    'value' => array(
+      'name' => "AuthenticationException"
+    ) 
+  );
+}
+
+function sbbvoting_construct_authz_exc() {
+  return array(
+    'type' => 'error',
+    'value' => array(
+      'name' => "AuthorizationException"
+    ) 
+  );
+}
+
+/**
+ * @param $lastVote int
+ */ 
+function sbbvoting_construct_cvy_exc($lastVote) {
+  return array(
+    'type' => 'error',
+    'value' => array(
+      'name' => 'CannotVoteYetException',
+      'lastVote' => $lastVote
+    ) 
+  );
+}
+
+function sbbvoting_facebook_add() {
+  $fbapi = FacebookAPI::getInstance();
+  $userId = $fbapi->getUserId();
+  $db = SpaceBillboardDatabase::getInstance();
+
+  if(!$userId) {
+    watchdog('sbbvoting', "No user id found. Returning AuthenticationException.");
+    drupal_json_output(sbbvoting_construct_authn_exc());
+  } else {
+    watchdog('sbbvoting', "User id found: $userId");
+    if(!$db->facebookUserExists($userId)) {
+      // the user does not exist in the db yet: insert and register vote
+      watchdog('sbbvoting', "User does not exist yet.");
+      $user = $fbapi->getUser();
+      if($user == null) {
+        watchdog('sbbvoting', "No user found. Returning AuthenticationException.");
+        drupal_json_output(sbbvoting_construct_authn_exc());
+      } else {
+        watchdog('sbbvoting', "User found: " . $user->toString() . ". Inserting in db.");
+        $db->insertFacebookUser($user);
+        if($fbapi->vote($userId)) {
+          $db->facebookVote($userId);
+          drupal_json_output(sbbvoting_construct_success());
+        } else {
+          drupal_json_output(sbbvoting_construct_authz_exc());
+        }
+      }
+    } else {
+      // the user exists in the db
+      watchdog('sbbvoting', "User exists in db.");
+      if($db->canVoteNow($userId)) {
+        // the user can vote
+        watchdog('sbbvoting', "User can vote now.");
+        if($fbapi->vote($userId)) {
+          $db->facebookVote($userId);
+          drupal_json_output(sbbvoting_construct_success());
+        } else {
+          drupal_json_output(sbbvoting_construct_authz_exc());
+        }
+      } else {
+        watchdog('sbbvoting', "User cannot vote yet. Returning CannoteVoteYetException.");
+        drupal_json_output(sbbvoting_construct_cvy_exc($db->getTimeBeforeNextVote($userId)));
+      }
+    }
+  }
+}

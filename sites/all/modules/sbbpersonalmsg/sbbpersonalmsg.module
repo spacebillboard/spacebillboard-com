@@ -1,0 +1,971 @@
+<?php
+module_load_include('inc.php', 'sbbpersonalmsg', 'classes/IPNErrorsDatabase');
+module_load_include('inc', 'webform', 'includes/webform.submissions');
+
+/**
+ * Does the URL binding.
+ */
+function sbbpersonalmsg_menu() {
+  $items = array();
+  
+  $items['messages/%'] = array(
+    'title' => 'T minus 10...',
+    'page callback' => 'sbbpersonalmsg_highlight_message',
+    'page arguments' => array(1),
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );  
+  $items['xmas/%'] = array(
+    'title' => 'T minus 10...',
+    'page callback' => 'sbbpersonalmsg_highlight_message',
+    'page arguments' => array(1),
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  ); 
+  $items['messages/initiate-purchase'] = array(
+    'title' => 'T minus 10...',
+    'page callback' => 'sbbpersonalmsg_initiate',
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+  $items['messages/paypal-ipn'] = array(
+    'title' => 'The IPN back-end for PayPal purchases',
+    'page callback' => 'sbbpersonalmsg_paypal_ipn',
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+  $items['messages/paypal-success'] = array(
+    'title' => 'You rock',
+    'page callback' => 'sbbpersonalmsg_paypal_success',
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+  $items['messages/paypal-fail'] = array(
+    'title' => 'Mission abort',
+    'page callback' => 'sbbpersonalmsg_paypal_fail',
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+  $items['christmas-messages/initiate-purchase'] = array(
+    'title' => 'T minus 10...',
+    'page callback' => 'sbbpersonalmsg_christmas_initiate',
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+  $items['christmas-messages/paypal-ipn'] = array(
+    'title' => 'The IPN back-end for PayPal purchases',
+    'page callback' => 'sbbpersonalmsg_paypal_ipn', // shared callback for normal and christmas
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+  $items['christmas-messages/paypal-success'] = array(
+    'title' => 'You rock',
+    'page callback' => 'sbbpersonalmsg_christmas_paypal_success',
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+  $items['christmas-messages/paypal-fail'] = array(
+    'title' => 'Mission abort',
+    'page callback' => 'sbbpersonalmsg_paypal_fail', // shared callback for normal and christmas
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+  $items['valentine-messages/initiate-purchase'] = array(
+    'title' => 'T minus 10...',
+    'page callback' => 'sbbpersonalmsg_valentine_initiate',
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+  $items['valentine-messages/paypal-ipn'] = array(
+    'title' => 'The IPN back-end for PayPal purchases',
+    'page callback' => 'sbbpersonalmsg_paypal_ipn', // shared callback for normal and christmas
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+  $items['valentine-messages/paypal-success'] = array(
+    'title' => 'You rock',
+    'page callback' => 'sbbpersonalmsg_valentine_paypal_success',
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+  $items['valentine-messages/paypal-fail'] = array(
+    'title' => 'Mission abort',
+    'page callback' => 'sbbpersonalmsg_paypal_fail', // shared callback for normal and christmas
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+  $items['valentine-messages/ogone-initiate-purchase'] = array(
+    'title' => 'T minus 10...',
+    'page callback' => 'sbbpersonalmsg_valentine_ogone_initiate',
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+  $items['valentine-messages/ogone-success'] = array(
+    'title' => 'You rock',
+    'page callback' => 'sbbpersonalmsg_valentine_ogone_success',
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+  $items['valentine-messages/ogone-fail'] = array(
+    'title' => 'Mission abort',
+    'page callback' => 'sbbpersonalmsg_ogone_fail', // shared callback for normal and christmas
+    'access callback' => true,
+    'type' => MENU_CALLBACK
+  );
+
+  return $items;
+}
+
+function sbbpersonalmsg_highlight_message($msgId) {
+  include(drupal_get_path('theme', 'sbbtheme') . '/the-billboard/generated/msg2square.inc.php');
+  if(array_key_exists($msgId, $msg2square)) {
+    user_cookie_save(array("highlightpms" => $msg2square[$msgId])); // will lead to the cookie Drupal.visitor.highlightpms (from php: $_COOKIE['Drupal_visitor_highlightpms'])
+  }
+  drupal_goto();
+}
+
+function sbbpersonalmsg_generateRandomId($length = 8) {
+  return substr(str_shuffle(MD5(microtime())), 0, $length);
+}
+
+/**
+  
+  The correct data sequence:
+
+  $data = array( // this sequence is verified and correct
+    1 => array('value' => array("id")), // id
+    2 => array('value' => array("name")), // name
+    3 => array('value' => array("message")), // message
+    4 => array('value' => array("email")), // email
+    5 => array('value' => array("url")), // url
+    6 => array('value' => array("twitter")), / twitter
+    7 => array('value' => array("showNameOnThankYou")), // showNameOnThankYou
+    8 => array('value' => array("showURLOnThankYou")), // showURLOnThankYou
+    9 => array('value' => array("showTwitterOnThankYou")), // showTwitterOnThankYou
+    10 => array('value' => array("double")), // double
+    11 => array('value' => array("correct")), // correct
+    12 => array('value' => array("sent")), // sent
+    13 => array('value' => array("to")), // to 
+    14 => array('value' => array("fromIsPlural")), // fromIsPlural
+    15 => array('value' => array("completed")), // completed
+    16 => array('value' => array("type")), // type
+    17 => array('value' => array("toIsPlural")), // toIsPlural
+    18 => array('value' => array("language")), // language: nl | en | fr
+  );
+
+**/
+function sbbpersonalmsg_create_new_normal_purchase($id, $name, $email, $message, $url, $twitter, $showNameOnThankYou, $showURLOnThankYou, $showTwitterOnThankYou) {
+  $webformNid = variable_get('sbbpersonalmsg_purchases_webform_id');
+  $node = node_load($webformNid);
+  global $user;
+  $data = array(
+    1 => array('value' => array($id)),
+    2 => array('value' => array($name)),
+    3 => array('value' => array($message)),
+    4 => array('value' => array($email)),
+    5 => array('value' => array($url)),
+    6 => array('value' => array($twitter)),
+    7 => array('value' => array($showNameOnThankYou ? "yes" : "no")),
+    8 => array('value' => array($showURLOnThankYou ? "yes" : "no")),
+    9 => array('value' => array($showTwitterOnThankYou ? "yes" : "no")),
+    10 => array('value' => array("")), // double
+    11 => array('value' => array("")), // correct
+    12 => array('value' => array("no")), // sent
+    13 => array('value' => array("")), // to 
+    14 => array('value' => array("")), // fromIsPlural
+    15 => array('value' => array("no")), // completed
+    16 => array('value' => array("")), // type
+    17 => array('value' => array("")), // toIsPlural
+    18 => array('value' => array("en")), // language
+  );
+  $submission = (object) array(
+    'nid' => $webformNid,
+    'uid' => $user->uid,
+    'submitted' => REQUEST_TIME,
+    'remote_addr' => ip_address(),
+    'is_draft' => FALSE,
+    'data' => $data,
+  );
+  webform_submission_insert($node, $submission);
+  webform_submission_send_mail($node, $submission);
+}
+
+function sbbpersonalmsg_create_new_christmas_purchase($id, $from, $to, $message, $email, $fromIsPlural, $toIsPlural, $url, $twitter, $showNameOnThankYou, $showURLOnThankYou, $showTwitterOnThankYou) {
+  $webformNid = variable_get('sbbpersonalmsg_purchases_webform_id');
+  $node = node_load($webformNid);
+  global $user;
+  $data = array(
+    1 => array('value' => array($id)),
+    2 => array('value' => array($from)),
+    3 => array('value' => array($message)),
+    4 => array('value' => array($email)),
+    5 => array('value' => array($url)),
+    6 => array('value' => array($twitter)),
+    7 => array('value' => array($showNameOnThankYou ? "yes" : "no")),
+    8 => array('value' => array($showURLOnThankYou ? "yes" : "no")),
+    9 => array('value' => array($showTwitterOnThankYou ? "yes" : "no")),
+    10 => array('value' => array("")), // double
+    11 => array('value' => array("")), // correct
+    12 => array('value' => array("no")), // sent
+    13 => array('value' => array($to)), // to 
+    14 => array('value' => array($fromIsPlural ? "yes" : "no")), // fromIsPlural
+    15 => array('value' => array("no")), // completed
+    16 => array('value' => array("christmas")), // type
+    17 => array('value' => array($toIsPlural ? "yes" : "no")), // toIsPlural
+    18 => array('value' => array("en")), // language
+  );
+  $submission = (object) array(
+    'nid' => $webformNid,
+    'uid' => $user->uid,
+    'submitted' => REQUEST_TIME,
+    'remote_addr' => ip_address(),
+    'is_draft' => FALSE,
+    'data' => $data,
+  );
+  webform_submission_insert($node, $submission);
+  webform_submission_send_mail($node, $submission);
+}
+
+function sbbpersonalmsg_create_new_valentine_purchase($id, $from, $to, $message, $email, $showNameOnThankYou, $design, $source) {
+  $webformNid = variable_get('sbbpersonalmsg_purchases_webform_id');
+  $node = node_load($webformNid);
+  global $user;
+  $data = array(
+    1 => array('value' => array($id)),
+    2 => array('value' => array($from)),
+    3 => array('value' => array($message)),
+    4 => array('value' => array($email)),
+    5 => array('value' => array("")), // url
+    6 => array('value' => array("")), // twitter
+    7 => array('value' => array($showNameOnThankYou ? "yes" : "no")),
+    8 => array('value' => array("no")), // showURLOnThankYou
+    9 => array('value' => array("no")), // showTwitterOnThankYou
+    10 => array('value' => array("")), // double
+    11 => array('value' => array("")), // correct
+    12 => array('value' => array("no")), // sent
+    13 => array('value' => array($to)), // to 
+    14 => array('value' => array("no")), // fromIsPlural
+    15 => array('value' => array("no")), // completed
+    16 => array('value' => array("valentine")), // type
+    17 => array('value' => array("no")), // toIsPlural
+    18 => array('value' => array($source == "com" ? "en" : "nl")), // language
+    19 => array('value' => array($design)), // design
+    20 => array('value' => array($source)), // source
+  );
+  $submission = (object) array(
+    'nid' => $webformNid,
+    'uid' => $user->uid,
+    'submitted' => REQUEST_TIME,
+    'remote_addr' => ip_address(),
+    'is_draft' => FALSE,
+    'data' => $data,
+  );
+  webform_submission_insert($node, $submission);
+  webform_submission_send_mail($node, $submission);
+}
+
+function sbbpersonalmsg_get_purchase($id) {
+  $webformNid = variable_get('sbbpersonalmsg_purchases_webform_id');
+  $node = node_load($webformNid);
+  // MDC: I don't know how to use these filters, so just do it brute force
+  $submissions = webform_get_submissions($webformNid); 
+  $submission = NULL;
+  foreach($submissions as $s) {
+    if($s->data[1]['value'][0] == "$id") {
+      $submission = $s;
+      break;
+    }
+  }
+  if($submission == NULL) {
+    return NULL;
+  }
+  return array(
+    "id" => $submission->data[1]['value'][0],
+    "name" => $submission->data[2]['value'][0],
+    "message" => $submission->data[3]['value'][0],
+    "email" => $submission->data[4]['value'][0],
+    "url" => $submission->data[5]['value'][0],
+    "twitter" => $submission->data[6]['value'][0],
+    "showNameOnThankYou" => isset($submission->data[7]['value'][0]) ? $submission->data[7]['value'][0] == "yes" : "",
+    "showURLOnThankYou" => isset($submission->data[8]['value'][0]) ? $submission->data[8]['value'][0] == "yes" : "",
+    "showTwitterOnThankYou" => isset($submission->data[9]['value'][0]) ? $submission->data[9]['value'][0] == "yes" : "",
+    "double" => isset($submission->data[10]['value'][0]) ? $submission->data[10]['value'][0] == "yes" : "",
+    "correct" => isset($submission->data[11]['value'][0]) ? $submission->data[11]['value'][0] == "yes" : "",
+    "sent" => isset($submission->data[12]['value'][0]) ? $submission->data[12]['value'][0] == "yes" : "",
+    "to" => isset($submission->data[13]['value'][0]) ? $submission->data[13]['value'][0] : "",
+    "fromIsPlural" => isset($submission->data[14]['value'][0]) ? $submission->data[14]['value'][0] == "yes" : "",
+    "completed" => isset($submission->data[15]['value'][0]) ? $submission->data[15]['value'][0] == "yes" : "",
+    "type" => isset($submission->data[16]['value'][0]) ? $submission->data[16]['value'][0] : "",
+    "toIsPlural" => isset($submission->data[17]['value'][0]) ? $submission->data[17]['value'][0] == "yes" : "",
+    "language" => isset($submission->data[18]['value'][0]) ? $submission->data[18]['value'][0] : "",
+    "design" => isset($submission->data[19]['value'][0]) ? $submission->data[19]['value'][0] : "",
+    "source" => isset($submission->data[20]['value'][0]) ? $submission->data[20]['value'][0] : "",
+  );
+}
+
+function sbbpersonalmsg_set_purchase_paid($id /* string */, $double /* boolean */, $correct /* boolean */) {
+  $webformNid = variable_get('sbbpersonalmsg_purchases_webform_id');
+  $node = node_load($webformNid);
+  // MDC: I don't know how to use these filters, so just do it brute force
+  $submissions = webform_get_submissions($webformNid); 
+  $submission = NULL;
+  foreach($submissions as $s) {
+    if($s->data[1]['value'][0] == "$id") {
+      $submission = $s;
+      break;
+    }
+  }
+  if($submission == NULL) {
+    watchdog('sbbpersonalmsg', "Purchase not found for update: $id");
+    return;
+  }
+  $submission->data[15]['value'][0] = "yes"; // completed
+  $submission->data[10]['value'][0] = $double ? "yes" : "no";
+  $submission->data[11]['value'][0] = $correct ? "yes" : "no";
+  webform_submission_update($node, $submission);  
+  webform_submission_send_mail($node, $submission);
+}
+
+function sbbpersonalmsg_initiate() {
+  $name = "";
+  $email = "";
+  $message = "";
+  $url = "";
+  $twitter = "";
+  $showNameOnThankYou = false;
+  $showURLOnThankYou = false;
+  $showTwitterOnThankYou = false;
+  // first check that all the necessary variables are given
+  if(isset($_POST['name'])) {
+    $name = $_POST['name']; 
+  } else {
+    return "error: name missing"; 
+  }
+  if(isset($_POST['email'])) {
+    $email = $_POST['email'];
+  } else {
+    return "error: email missing"; 
+  }
+  if(isset($_POST['message'])) {
+    $message = $_POST['message'];
+  } else {
+    return "error: message missing"; 
+  }
+  if(isset($_POST['url'])) {
+    $url = 'http://' . $_POST['url'];
+  }
+  if(isset($_POST['twitter'])) {
+    $twitter = $_POST['twitter'];
+  }
+  if(isset($_POST['show-name'])) {
+    $showNameOnThankYou = true;
+  }
+  if(isset($_POST['show-url']) && isset($_POST['url'])) {
+    $showURLOnThankYou = true;
+  }
+  if(isset($_POST['show-twitter']) && isset($_POST['twitter'])) {
+    $showTwitterOnThankYou = true;
+  }
+  // then generate an id
+  $id = sbbpersonalmsg_generateRandomId();
+  // then store the new purchase
+  sbbpersonalmsg_create_new_normal_purchase($id, $name, $email, $message, $url, $twitter, $showNameOnThankYou, $showURLOnThankYou, $showTwitterOnThankYou);
+  // then redirect to paypal
+  return '
+<div class="row">
+    <div class="col-xs-12 text-center">Redirecting you to PayPal. Please wait.</div>
+</div>
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" id="paypalHiddenForm">
+  <input type="hidden" name="custom" value="' . $id . '">
+  <input type="hidden" id="quantity" name="quantity" value="' . sbb_strlen($message) . '">
+  <input type="hidden" name="cmd" value="_s-xclick">
+  <input type="hidden" name="hosted_button_id" value="WHZMQPPZJBG3C">
+</form>
+
+<script>
+document.getElementById("paypalHiddenForm").submit();
+</script>';
+}
+
+function sbbpersonalmsg_christmas_initiate() {
+  $from = "";
+  $to = "";
+  $message = "";
+  $email = "";
+  $fromIsPlural = false;
+  $url = "";
+  $twitter = "";
+  $showNameOnThankYou = false;
+  $showURLOnThankYou = false;
+  $showTwitterOnThankYou = false;
+  // first check that all the necessary variables are given
+  if(isset($_POST['from'])) {
+    $from = $_POST['from']; 
+  } else {
+    return "error: from missing"; 
+  }
+  if(isset($_POST['to'])) {
+    $to = $_POST['to']; 
+  } else {
+    return "error: to missing"; 
+  }
+  if(isset($_POST['message'])) {
+    $message = $_POST['message'];
+  } else {
+    return "error: message missing"; 
+  }
+  if(isset($_POST['email'])) {
+    $email = $_POST['email'];
+  } else {
+    return "error: email missing"; 
+  }
+  if(isset($_POST['plural'])) {
+    $fromIsPlural = true;
+  }
+  if(isset($_POST['url'])) {
+    $url = 'http://' . $_POST['url'];
+  }
+  if(isset($_POST['twitter'])) {
+    $twitter = $_POST['twitter'];
+  }
+  if(isset($_POST['show-name'])) {
+    $showNameOnThankYou = true;
+  }
+  if(isset($_POST['show-url']) && isset($_POST['url'])) {
+    $showURLOnThankYou = true;
+  }
+  if(isset($_POST['show-twitter']) && isset($_POST['twitter'])) {
+    $showTwitterOnThankYou = true;
+  }
+  // then generate an id
+  $id = sbbpersonalmsg_generateRandomId();
+  // then store the new purchase
+  sbbpersonalmsg_create_new_christmas_purchase($id, $from, $to, $message, $email, $fromIsPlural, false, $url, $twitter, $showNameOnThankYou, $showURLOnThankYou, $showTwitterOnThankYou);
+  // then redirect to paypal
+  return '
+<div class="row">
+    <div class="col-xs-12 text-center">Redirecting you to PayPal. Please wait.</div>
+</div>
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" id="paypalHiddenForm">
+  <input type="hidden" name="custom" value="' . $id . '">
+  <input type="hidden" id="quantity" name="quantity" value="' . sbb_strlen($message) . '">
+  <input type="hidden" name="cmd" value="_s-xclick">
+  <input type="hidden" name="hosted_button_id" value="KHHBERPCYQ674">
+</form>
+
+<script>
+document.getElementById("paypalHiddenForm").submit();
+</script>';
+}
+
+function sbbpersonalmsg_valentine_initiate() {
+  global $base_root;
+  $from = "";
+  $to = "";
+  $message = "";
+  $email = "";
+  $showNameOnThankYou = true;
+  $design = "";
+  $source = sbbvalentine_website();
+  $paymentChannel = '';
+  // first check that all the necessary variables are given
+  if(isset($_POST['payment-channel'])) {
+    $paymentChannel = $_POST['payment-channel'];
+    if($paymentChannel != 'ogone' && $paymentChannel != 'paypal') {
+      return "error: unknown payment channel: $paymentChannel";
+    }
+  } else {
+    return "error: payment channel missing"; 
+  }
+  if(isset($_POST['from'])) {
+    $from = $_POST['from']; 
+  } else {
+    return "error: from missing"; 
+  }
+  if(isset($_POST['to'])) {
+    $to = $_POST['to']; 
+  } else {
+    return "error: to missing"; 
+  }
+  if(isset($_POST['message'])) {
+    $message = $_POST['message'];
+  } else {
+    return "error: message missing"; 
+  }
+  if(isset($_POST['email'])) {
+    $email = $_POST['email'];
+  } else {
+    return "error: email missing"; 
+  }
+  if(isset($_POST['anonymize-name'])) {
+    $showNameOnThankYou = false;
+  }
+  if(isset($_POST['design'])) {
+    $design = $_POST['design'];
+  } else {
+    return "error: design missing"; 
+  }
+  if(!isset($_POST['agree'])) {
+    return "You have to agree to the terms and conditions."; 
+  }
+  // check for spam (rudimentary)
+  $banned = array("gay porn", "Microsoft Translator", "shemale", "gay picture", "porno", "viagra");
+  foreach($banned as $b) {
+    if(stripos($message, $b) !== FALSE) {
+      return "error: spam detected ($b)";
+    }
+  }
+  // then generate an id
+  $id = sbbpersonalmsg_generateRandomId();
+  // then store the new purchase
+  sbbpersonalmsg_create_new_valentine_purchase($id, $from, $to, $message, $email, $showNameOnThankYou, $design, $source);
+  // then redirect to paypal or ogone
+  if($paymentChannel == 'paypal') {
+    if(sbbvalentine_website() == "com") {
+      $text = "Redirecting you to PayPal. Please wait.";
+    } else {
+      $text = "We sturen je door naar PayPay. Even geduld aub.";
+    }  
+    if(sbbvalentine_website() == "nl") {
+      $btnid = "2PBSPCDQS3T7L";
+    } else if(sbbvalentine_website() == "be") {
+      $btnid = "SL9C3JYR3673C";
+    } else {
+      $btnid = "39BFH9HZ57NZ6";
+    }
+    return '
+<div class="row">
+    <div class="col-xs-12 text-center">' . $text . '</div>
+</div>
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" id="paypalHiddenForm">
+  <input type="hidden" name="custom" value="' . $id . '">
+  <input type="hidden" id="quantity" name="quantity" value="' . sbb_strlen($message) . '">
+  <input type="hidden" name="cmd" value="_s-xclick">
+  <input type="hidden" name="hosted_button_id" value="' . $btnid . '">
+</form>
+
+<script>
+document.getElementById("paypalHiddenForm").submit();
+</script>';
+  } else {
+    // ogone
+    if(sbbvalentine_website() == "com") {
+      $text = "Redirecting you to the checkout. Please wait.";
+      $TITLE = 'A message in the stars';
+      $CURRENCY = 'EUR'; /* FIXME */
+      $LANGUAGE = 'en_US';
+    } else {
+      $text = "We sturen je door naar de betaalpagina. Even geduld aub.";
+      $TITLE = 'Een boodschap in de sterren';
+      $CURRENCY = 'EUR';
+      $LANGUAGE = 'nl_BE';
+    }  
+    if(sbbvalentine_website() == "nl") {
+      $valentine_logo = 'schrijfhetindesterren-nl.png';
+    } else if(sbbvalentine_website() == "be") {
+      $valentine_logo = 'schrijfhetindesterren-be.png';
+    } else {
+      $valentine_logo = 'writeitinthestars-com.png';
+    }
+    
+    $ACCEPTURL = $base_root . '/valentine-messages/ogone-success';
+    // calculate the sha
+    // $ACCEPTURL
+    $AMOUNT = sbb_strlen($message) * 100; // *100 ! (see ogone documentation) 
+    $BUTTONBGCOLOR = '#3276b1';
+    $BUTTONTXTCOLOR = '#FFFFFF';
+    $BGCOLOR = '#FFFFFF';
+    $CANCELURL = $base_root;
+    // $CURRENCY
+    $DECLINEURL = $base_root . '/valentine-messages/ogone-fail';
+    $EMAIL = $email;
+    $EXCEPTIONURL = $base_root . '/valentine-messages/ogone-fail';
+    $FONTTYPE = '\'Palatino Linotype\', \'Book Antiqua\', Palatino, serif'; 
+    // $LANGUAGE
+    $LOGO = 'https://raw.githubusercontent.com/maartendecat/spacebillboard-public-stuff/master/' . $valentine_logo;
+    $ORDERID = $id;
+    $PSPID = 'spacebillboard';
+    $TBLBGCOLOR = '#FFFFFF';
+    $TBLTXTCOLOR = '#808080';
+    $TXTCOLOR = '#FF3234';
+    $passphrase = 'ditiseenpassphrase123';
+    // $TITLE
+    $to_hash = "ACCEPTURL=$ACCEPTURL${passphrase}AMOUNT=$AMOUNT${passphrase}BGCOLOR=$BGCOLOR${passphrase}BUTTONBGCOLOR=$BUTTONBGCOLOR${passphrase}BUTTONTXTCOLOR=$BUTTONTXTCOLOR${passphrase}CANCELURL=$CANCELURL${passphrase}CURRENCY=$CURRENCY${passphrase}DECLINEURL=$DECLINEURL${passphrase}EMAIL=$EMAIL${passphrase}EXCEPTIONURL=$EXCEPTIONURL${passphrase}FONTTYPE=$FONTTYPE${passphrase}LANGUAGE=$LANGUAGE${passphrase}LOGO=$LOGO${passphrase}ORDERID=$ORDERID${passphrase}PSPID=$PSPID${passphrase}TBLBGCOLOR=$TBLBGCOLOR${passphrase}TBLTXTCOLOR=$TBLTXTCOLOR${passphrase}TITLE=$TITLE${passphrase}TXTCOLOR=$TXTCOLOR${passphrase}";
+    $sha = sha1($to_hash);
+    return '
+<div class="row">
+    <div class="col-xs-12 text-center">' . $text . '</div>
+</div>
+
+<form method="post" action="https://secure.ogone.com/ncol/prod/orderstandard.asp" id="ingenicoHiddenForm" name="ingenicoHiddenForm">
+<!-- general parameters -->
+<input type="hidden" name="PSPID" value="' . $PSPID . '">
+<input type="hidden" name="ORDERID" value="' . $ORDERID . '">
+<input type="hidden" name="AMOUNT" value="' . $AMOUNT . '">
+<input type="hidden" name="LANGUAGE" value="' . $LANGUAGE . '">
+<input type="hidden" name="CURRENCY" value="' . $CURRENCY . '">
+<input type="hidden" name="EMAIL" value="' . $EMAIL . '">
+<!-- check before the payment: see Security: Check before the payment -->
+<input type="hidden" name="SHASIGN" value="' . $sha . '">
+<!-- layout information: see Look and feel of the payment page -->
+<input type="hidden" name="TITLE" value="' . $TITLE . '">
+<input type="hidden" name="BGCOLOR" value="' . $BGCOLOR . '">
+<input type="hidden" name="TXTCOLOR" value="' . $TXTCOLOR . '">
+<input type="hidden" name="TBLBGCOLOR" value="' . $TBLBGCOLOR . '">
+<input type="hidden" name="TBLTXTCOLOR" value="' . $TBLTXTCOLOR . '">
+<input type="hidden" name="BUTTONBGCOLOR" value="' . $BUTTONBGCOLOR . '">
+<input type="hidden" name="BUTTONTXTCOLOR" value="' . $BUTTONTXTCOLOR . '">
+<input type="hidden" name="LOGO" value="' . $LOGO . '">
+<input type="hidden" name="FONTTYPE" value="' . $FONTTYPE . '">
+<!-- post payment redirection: see Transaction feedback to the customer -->
+<input type="hidden" name="ACCEPTURL" value="' . $ACCEPTURL . '">
+<input type="hidden" name="DECLINEURL" value="' . $DECLINEURL . '">
+<input type="hidden" name="EXCEPTIONURL" value="' . $EXCEPTIONURL . '">
+<input type="hidden" name="CANCELURL" value="' . $CANCELURL . '">
+</form>
+
+<script>
+document.getElementById("ingenicoHiddenForm").submit();
+</script>';
+  }
+}
+
+function sbbpersonalmsg_paypal_ipn() {
+  // from: https://developer.paypal.com/webapps/developer/docs/classic/ipn/ht_ipn/
+  // STEP 1: read POST data
+   
+  // Reading POSTed data directly from $_POST causes serialization issues with array data in the POST.
+  // Instead, read raw POST data from the input stream. 
+  $raw_post_data = file_get_contents('php://input');
+  $raw_post_array = explode('&', $raw_post_data);
+  $myPost = array();
+  foreach ($raw_post_array as $keyval) {
+    $keyval = explode ('=', $keyval);
+    if (count($keyval) == 2)
+       $myPost[$keyval[0]] = urldecode($keyval[1]);
+  }
+  // read the IPN message sent from PayPal and prepend 'cmd=_notify-validate'
+  $req = 'cmd=_notify-validate';
+  if(function_exists('get_magic_quotes_gpc')) {
+     $get_magic_quotes_exists = true;
+  } 
+  foreach ($myPost as $key => $value) {        
+     if($get_magic_quotes_exists == true && get_magic_quotes_gpc() == 1) { 
+          $value = urlencode(stripslashes($value)); 
+     } else {
+          $value = urlencode($value);
+     }
+     $req .= "&$key=$value";
+  }
+
+  $purchaseId = $myPost['custom'];
+  watchdog('sbbpersonalmsg', "Received IPN message for purchase id $purchaseId");
+   
+   
+  // Step 2: POST IPN data back to PayPal to validate
+   
+  $ch = curl_init('https://www.paypal.com/cgi-bin/webscr');
+  curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+  curl_setopt($ch, CURLOPT_POST, 1);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $req);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+  curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Connection: Close'));
+   
+  // In wamp-like environments that do not come bundled with root authority certificates,
+  // please download 'cacert.pem' from "http://curl.haxx.se/docs/caextract.html" and set 
+  // the directory path of the certificate as shown below:
+  // curl_setopt($ch, CURLOPT_CAINFO, dirname(__FILE__) . '/cacert.pem');
+  if( !($res = curl_exec($ch)) ) {
+      // error_log("Got " . curl_error($ch) . " when processing IPN data");
+      curl_close($ch);
+      watchdog('sbbpersonalmsg', "We exited after the curl_close()??");
+      exit;
+  }
+  curl_close($ch);
+
+  // inspect IPN validation result and act accordingly
+
+  $errorsDb = new IPNErrorsDatabase();
+  if (strcmp ($res, "INVALID") == 0) {
+    // IPN invalid, log for manual investigation
+    $errorsDb->storeError("invalid message", "Invalid message for purchase $purchaseId: the response from PayPal was $res");
+    watchdog('sbbpersonalmsg', "Invalid message for purchase $purchaseId: the response from PayPal was $res");
+    return;
+  } 
+
+  // The IPN is verified, process it:
+  // check whether the payment_status is Completed
+  // check that txn_id has not been previously processed
+  // check that receiver_email is your Primary PayPal email
+  // check that payment_amount/payment_currency are correct
+  // process the notification
+
+  // assign posted variables to local variables
+  $item_name = $_POST['item_name'];
+  $item_number = $_POST['item_number'];
+  $payment_status = $_POST['payment_status'];
+  $payment_amount = $_POST['mc_gross'];
+  $payment_currency = $_POST['mc_currency'];
+  $txn_id = $_POST['txn_id'];
+  $receiver_email = $_POST['receiver_email'];
+  $payer_email = $_POST['payer_email'];
+  $quantity = $_POST['quantity'];
+
+  // To test:
+//  foreach($_POST as $key => $value) {
+//    echo $key." = ". $value."<br>";
+//  }
+  $purchase = sbbpersonalmsg_get_purchase($purchaseId);
+  if($purchase == null) {
+    $errorsDb->storeError("unknown purchase id", $raw_post_data);
+    // TODO return anything to PayPal here?
+    watchdog('sbbpersonalmsg', "Unknown purchase id: $purchaseId. More details: see the database");
+    return;
+  }
+  // check whether we already processed this purchase
+  $double = false;
+  if($purchase["completed"]) {
+    $errorsDb->storeError("already processed", $raw_post_data);
+    $double = true;
+    watchdog('sbbpersonalmsg', "Already processed this purchase id: $purchaseId. More details: see the database");
+  }
+  // test correct quantity for this message
+  $correct = $quantity == sbb_strlen($purchase["message"]);
+  if(! $correct) {
+    $errorsDb->storeError("incorrect quantity", $raw_post_data);
+    echo("incorrect quantity: quantity=$quantity while len(msg)=" . strlen($purchase["message"]));
+    watchdog('sbbpersonalmsg', "Incorrect quantity for purchase id: $purchaseId. More details: see the database");
+  }
+
+  // store in the db that the purchase is complete
+  sbbpersonalmsg_set_purchase_paid($purchaseId, $double, $correct);
+
+  // do not run this through templating
+  drupal_exit();
+}
+
+function sbbpersonalmsg_paypal_success() {
+  return '
+<div class="row">
+  <div class="col-xs-12">
+    <p class="text-center">Thank you for supporting space research. <span class="accent">You are great.</span></p>
+    <p class="text-center">We will send you your certificate as quickly as possible!</p>
+  </div>
+</div>';
+}
+
+function sbbpersonalmsg_christmas_paypal_success() {
+  return '
+<div class="row">
+  <div class="col-xs-12">
+    <p class="text-center"><span class="accent">Thank you for your order.</span></p>
+    <p class="text-center">We will send you your Christmas card as quickly as possible!</p>
+  </div>
+</div>';
+}
+
+function sbbpersonalmsg_valentine_paypal_success() {
+  if(sbbvalentine_website() == "com") {
+    return '
+<div class="row">
+  <div class="col-xs-12">
+    <p class="text-center"><span class="">Thank you for your order.</span></p>
+    <p class="text-center">We will send you your card within 24 hours!</p>
+    <div class="text-center accent" style="margin-top: 50px; margin-bottom: 50px;">
+      <p><strong>Important</strong></p>
+      <p>If you have not received your card after 24 hours, be sure to<br/><strong style="">check your spam folder</strong>.</p>
+    </div>
+    <p class="text-center"><a href="/">Back to the home page</a></p>
+  </div>
+</div>';
+  } else {
+    return '
+<div class="row">
+  <div class="col-xs-12">
+    <p class="text-center"><span class="">Bedankt voor je bestelling.</span></p>
+    <p class="text-center">We sturen je jouw kaart binnen minder dan 24 uur!</p>
+    <div class="text-center accent" style="margin-top: 50px; margin-bottom: 50px;">
+      <p><strong>Belangrijk</strong></p>
+      <p>Als je je kaart nog niet ontvangen hebt na 24 uur, <br/><strong style="">kijk dan zeker je spam folder na</strong>.</p>
+    </div>
+    <p class="text-center"><a href="/">Terug naar de hoofdpagina</a></p>
+  </div>
+</div>';
+  }
+}
+
+function sbbpersonalmsg_valentine_ogone_success() {
+/*
+orderID=47a100e1
+currency=EUR
+amount=8
+PM=CreditCard
+ACCEPTANCE=test123
+STATUS=5
+CARDNO=XXXXXXXXXXXX1111
+ED=0115
+CN=dkdkd
+TRXDATE=01%2F29%2F15
+PAYID=39013106
+NCERROR=0
+BRAND=VISA
+IP=193%2E190%2E253%2E149
+SHASIGN=B7D10D5A85F9657921071011E0217BFF2D6A8F69
+*/
+
+  $ACCEPTANCE = $_GET['ACCEPTANCE'];
+  $AMOUNT = $_GET['amount'];
+  $BRAND = $_GET['BRAND'];
+  $CARDNO = $_GET['CARDNO'];
+  $CN = $_GET['CN'];
+  $CURRENCY = $_GET['currency'];
+  $ED = $_GET['ED'];
+  $IP = $_GET['IP'];
+  $NCERROR = $_GET['NCERROR'];
+  $ORDERID = $_GET['orderID'];
+  $PAYID = $_GET['PAYID'];
+  $PM = $_GET['PM'];
+  $STATUS = $_GET['STATUS'];
+  $TRXDATE = $_GET['TRXDATE'];
+
+  $SHASIGN = $_GET['SHASIGN'];
+
+  // TODO: verify the request BUT I AM NOT SURE WHETHER THE SAME PARAMETERS ARE ALWAYS GIVEN, SO THIS ORDERING SHOULD BE DYNAMICALLY
+  // TODO: in essence, this is doable by iterating over the $_GET array
+  //$passphrase = 'eenanderepassphrasemet16karakters';
+  //$to_hash = "X=X${passphrase}X=X${passphrase}X=X${passphrase}X=X${passphrase}X=X${passphrase}X=X${passphrase}X=X${passphrase}X=X${passphrase}X=X${passphrase}X=X${passphrase}";
+
+  // To test:
+//  foreach($_POST as $key => $value) {
+//    echo $key." = ". $value."<br>";
+//  }
+  $purchaseId = $ORDERID;
+  $quantity = $AMOUNT;
+  $purchase = sbbpersonalmsg_get_purchase($purchaseId);
+  if($purchase == null) {
+    watchdog('sbbpersonalmsg', "Unknown purchase id: $purchaseId. More details: see the database");
+    return;
+  }
+  // check whether we already processed this purchase
+  $double = false;
+  if($purchase["completed"]) {
+    $double = true;
+    watchdog('sbbpersonalmsg', "Already processed this purchase id: $purchaseId. More details: see the database");
+  }
+  // test correct quantity for this message
+  $correct = $quantity == sbb_strlen($purchase["message"]);
+  if(! $correct) {
+    echo("incorrect quantity: quantity=$quantity while len(msg)=" . strlen($purchase["message"]));
+    watchdog('sbbpersonalmsg', "Incorrect quantity for purchase id: $purchaseId. More details: see the database");
+  }
+
+  // store in the db that the purchase is complete
+  sbbpersonalmsg_set_purchase_paid($purchaseId, $double, $correct);
+
+  // return a message
+  if(sbbvalentine_website() == "com") {
+    return '
+<div class="row">
+  <div class="col-xs-12">
+    <p class="text-center"><span class="">Thank you for your order.</span></p>
+    <p class="text-center">We will send you your card within 24 hours!</p>
+    <div class="text-center accent" style="margin-top: 50px; margin-bottom: 50px;">
+      <p><strong>Important</strong></p>
+      <p>If you have not received your card after 24 hours, be sure to<br/><strong style="">check your spam folder</strong>.</p>
+    </div>
+    <p class="text-center"><a href="/">Back to the home page</a></p>
+  </div>
+</div>';
+  } else {
+    return '
+<div class="row">
+  <div class="col-xs-12">
+    <p class="text-center"><span class="">Bedankt voor je bestelling.</span></p>
+    <p class="text-center">We sturen je jouw kaart binnen minder dan 24 uur!</p>
+    <div class="text-center accent" style="margin-top: 50px; margin-bottom: 50px;">
+      <p><strong>Belangrijk</strong></p>
+      <p>Als je je kaart nog niet ontvangen hebt na 24 uur, <br/><strong style="">kijk dan zeker je spam folder na</strong>.</p>
+    </div>
+    <p class="text-center"><a href="/">Terug naar de hoofdpagina</a></p>
+  </div>
+</div>';
+  }
+}
+
+function sbbpersonalmsg_paypal_fail() {
+  return '
+<div class="row">
+  <div class="col-xs-12">
+    <p class="text-center">It seems that something went wrong. If we did that, we apologize. Try again!</p>
+  </div>
+</div>';
+}
+
+function sbbpersonalmsg_valentine_paypal_fail() {
+  if(sbbvalentine_website() == "com") {
+    return '
+<div class="row">
+  <div class="col-xs-12">
+    <p class="text-center">Oops, it seems that something went wrong. If we did that, we apologize. Please try again!</p>
+  </div>
+</div>';
+  } else {
+    return '
+<div class="row">
+  <div class="col-xs-12">
+    <p class="text-center">Oeps, er is blijkbaar iets fout gegaan. Het spijt ons als wij de oorzaak waren. Probeer aub opnieuw!</p>
+  </div>
+</div>';
+  }
+}
+
+function sbbpersonalmsg_valentine_ogone_fail() {
+  if(sbbvalentine_website() == "com") {
+    return '
+<div class="row">
+  <div class="col-xs-12">
+    <p class="text-center"><span class="accent">Thank you for your order.</span></p>
+    <p class="text-center">We will send you your card as quickly as possible!</p>
+  </div>
+</div>';
+  } else {
+    return '
+<div class="row">
+  <div class="col-xs-12">
+    <p class="text-center"><span class="accent">Bedankt voor je bestelling.</span></p>
+    <p class="text-center">We sturen je jouw kaart zo snel mogelijk!</p>
+  </div>
+</div>';
+  }
+}
+
+/****************************
+ *  Sending notification e-mails
+ ****************************/
+
+/**
+ * Implements hook_mail().
+ */
+function sbbpersonalmsg_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'personal-message-processed-notification':
+      $pmsg = $params['sbb-stuff']['pmsg'];
+      watchdog('sbbtheme', "Sending personal-message-processed-notification e-mail to: " . $pmsg->getEmail());
+      $message['subject'] = $pmsg->getMailSubject();
+      $message['body'][] = $pmsg->getMailBody();
+      $message['headers']['Bcc'] = 'team@spacebillboard.com';
+      $message['headers']['MIME-Version'] = '1.0';
+      $message['headers']['Content-Type'] = 'multipart/alternative; boundary="----------=_1336496276-2736-1"';
+      $message['headers']['Content-Transfer-Encoding'] = '7bit';
+      //print_r($message);
+      break;
+    default:
+      throw new Exception('Unknown mail type requested from sbbpersonalmsg??');
+  }
+}

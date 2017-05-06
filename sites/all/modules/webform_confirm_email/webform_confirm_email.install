@@ -1,0 +1,113 @@
+<?php
+
+/**
+ * @file
+ *   Webform confirm email module install/schema hooks.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function webform_confirm_email_schema() {
+  return array(
+    'webform_confirm_email_code' => array(
+      'description' => 'Table for storing email confirmation codes. That is 1 unique code for every webform for every submission',
+      'fields' => array(
+        'nid' => array(
+          'description' => 'The node identifier of a webform.',
+          'type'        => 'int',
+          'unsigned'    => TRUE,
+          'not null'    => TRUE,
+        ),
+        'sid' => array(
+          'description' => 'Submission identifier for this row\'s settings.',
+          'type'        => 'int',
+          'unsigned'    => TRUE,
+          'not null'    => TRUE,
+        ),
+        'eid' => array(
+          'description' => 'The e-mail identifier for this row\'s settings.',
+          'type'        => 'int',
+          'unsigned'    => TRUE,
+          'not null'    => TRUE,
+          'default'     => 0,
+        ),
+        'email' => array(
+          'description' => 'Email address being confirmed.',
+          'type'        => 'text',
+          'size'        => 'medium',
+          'not null'    => FALSE,
+        ),
+        'code' => array(
+          'description' => 'Used to confirm email addresses.',
+          'type'        => 'char',
+          'length'      => 32,
+          'not null'    => TRUE,
+        ),
+        'datetime' => array(
+          'description' => 'Creation timestamp',
+          'type'        => 'int',
+          'not null'    => TRUE,
+        ),
+      ),
+      'primary key' => array('nid', 'sid'), //.....
+    ),
+    'webform_confirm_email_conditional' => array(
+      'description' => 'send these mails after confirmation...',
+      'fields' => array(
+        'ecid' => array(
+          'description' => 'Email conditional identifier.',
+          'type'        => 'serial',
+          'unsigned'    => TRUE,
+          'not null'    => TRUE,
+        ),
+        'nid' => array(
+          'description' => 'The node identifier of a webform.',
+          'type'        => 'int',
+          'unsigned'    => TRUE,
+          'not null'    => TRUE,
+        ),
+        'sid' => array(
+          'description' => 'Submission identifier for this row\'s settings.',
+          'type'        => 'int',
+          'unsigned'    => TRUE,
+          'not null'    => TRUE,
+        ),
+        'message' => array(
+          'description' => '...',
+          'type'        => 'text',
+          'size'        => 'medium',
+          'serialize'   => TRUE,
+        ),
+      ),
+      'primary key' => array('ecid'),
+    ),
+    'webform_confirm_email' => array(
+      'description' => 'Table for storing email types.',
+      'fields' => array(
+        'nid' => array(
+          'description' => 'The node identifier of a webform.',
+          'type'        => 'int',
+          'unsigned'    => TRUE,
+          'not null'    => TRUE,
+        ),
+        'eid' => array(
+          'description' => 'The e-mail identifier for this row\'s settings.',
+          'type'        => 'int',
+          'unsigned'    => TRUE,
+          'size'        => 'small',
+          'not null'    => TRUE,
+          'default'     => 0,
+        ),
+        'email_type' => array(
+          'description' => 'Email type: 0) always; 1) confirmation; 2) conditional.',
+          'type'        => 'int',
+          'size'        => 'tiny',
+          'not null'    => TRUE,
+          'default'     => 0,
+        ),
+      ),
+      'primary key' => array('nid', 'eid'),
+    ),
+  );
+}

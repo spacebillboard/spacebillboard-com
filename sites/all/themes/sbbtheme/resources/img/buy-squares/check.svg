@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="74.833099"
+   height="63.089653"
+   viewBox="0 0 74.833099 63.089653"
+   version="1.1"
+   id="svg2"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="check.svg"
+   inkscape:export-filename="/home/maartend/htdocs/spacebillboard/docroot/sites/all/themes/sbbtheme/resources/img/buy-squares/check.png"
+   inkscape:export-xdpi="99.857895"
+   inkscape:export-ydpi="99.857895">
+  <metadata
+     id="metadata15">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Check copy</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1600"
+     inkscape:window-height="834"
+     id="namedview13"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="2.36"
+     inkscape:cx="-84.655729"
+     inkscape:cy="31.498683"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <title
+     id="title4">Check copy</title>
+  <description
+     id="description6">Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+  <defs
+     id="defs8" />
+  <g
+     id="Large icons"
+     style="fill:#0086d7;fill-rule:evenodd;fill-opacity:1"
+     transform="translate(-12.409967,-18.40903)">
+    <g
+       id="Check copy"
+       style="fill:#0086d7;fill-opacity:1">
+      <path
+         d="m 76.161845,18.643348 10.723287,8.997906 c 0.426105,0.357544 0.478065,0.987343 0.122002,1.411683 l -43.705713,52.08644 c -0.220661,0.262973 -0.545481,0.384312 -0.861387,0.355027 -0.202626,-0.01622 -0.402757,-0.09393 -0.571023,-0.235119 L 12.772767,56.844637 c -0.428645,-0.359676 -0.48473,-0.991697 -0.129419,-1.415141 l 8.997906,-10.723287 c 0.357544,-0.426105 0.989327,-0.476401 1.416114,-0.118284 L 40.678432,59.373753 74.750423,18.768335 c 0.35738,-0.425908 0.987978,-0.480298 1.411422,-0.124987 z m 0,0"
+         id="Rectangle 63"
+         inkscape:connector-curvature="0"
+         style="fill:#0086d7;fill-opacity:1" />
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,3 @@
+name = SBB Good Causes
+description = Provides the back-end functionality for voting on good causes
+core = 7.x
